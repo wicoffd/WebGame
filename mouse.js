@@ -10,7 +10,7 @@ class Mouse {
         var frameNumber = 2;
         
         this.setColor();
-        this.animator = new SimpleAnimator(ASSET_MANAGER.getAsset("../Assets/MouseModded.png"),0,this.yColorPadding + yDirectionPadding,25,25,frameNumber,.2)
+        this.animator = new SimpleAnimator(ASSET_MANAGER.getAsset("./MouseModded.png"),0,this.yColorPadding + yDirectionPadding,25,25,frameNumber,.2)
 
     };
     setColor(){
