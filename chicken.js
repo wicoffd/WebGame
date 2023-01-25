@@ -1,4 +1,4 @@
-class Mouse {
+class Chicken {
     constructor(game,type,direction,xPos,yPos){
         this.type = type;
         this.xPos = xPos;
@@ -8,10 +8,10 @@ class Mouse {
         this.xColorPadding = 0;
         this.direction  = direction;
         var yDirectionPadding = 0;
-        var frameNumber = 2;
+        var frameNumber = 3;
         
         this.setColor();
-        this.animator = new Animator(ASSET_MANAGER.getAsset("./Mouse.png"),0 + this.xColorPadding ,this.yColorPadding + yDirectionPadding,48,48,frameNumber,.2)
+        this.animator = new Animator(ASSET_MANAGER.getAsset("./Chicken.png"),0 + this.xColorPadding ,this.yColorPadding + yDirectionPadding,48,48,frameNumber,.2)
 
     };
     setColor(){
@@ -124,7 +124,7 @@ class Mouse {
        
     };
     draw(ctx) {
-        this.animator.drawFrame(this.game.clockTick,ctx,this.xPos,this.yPos,4)
+        this.animator.drawFrame(this.game.clockTick,ctx,this.xPos,this.yPos,1)
         
         //ctx.drawImage(ASSET_MANAGER.getAsset("../Assets/Mouse.png"),0,0);
     }
