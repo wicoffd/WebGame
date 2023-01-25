@@ -1,4 +1,4 @@
-class Chicken {
+class Owl {
     constructor(game,type,direction,xPos,yPos){
         this.type = type;
         this.xPos = xPos;
@@ -6,12 +6,15 @@ class Chicken {
         this.game = game;
         this.yColorPadding = 0;
         this.xColorPadding = 0;
+        
+        var yHeight = 48;
         this.direction  = direction;
         var yDirectionPadding = 0;
         var frameNumber = 3;
         
         this.setColor();
-        this.animator = new Animator(ASSET_MANAGER.getAsset("./Chicken.png"),0 + this.xColorPadding ,this.yColorPadding + yDirectionPadding,48,48,frameNumber,.2)
+        //this.animator = new Animator(ASSET_MANAGER.getAsset("./Owl.png"),0 + this.xColorPadding ,this.yColorPadding + yDirectionPadding,xWidth,yHeight,frameNumber,.2)
+        this.animator = new Animator(ASSET_MANAGER.getAsset("./Owl.png"),0+this.xColorPadding,0+yDirectionPadding,77,yHeight,frameNumber,.2)
 
     };
     setColor(){
@@ -19,26 +22,43 @@ class Chicken {
             case "1":
                 this.yColorPadding = 0;
             break;
+            
             case "2":
                 this.yColorPadding = 0;
-                this.xColorPadding = 48*3;
+                this.xColorPadding = 77*3;
             break;
+
             case "3":
                 this.yColorPadding = 0;
-                this.xColorPadding = 48*3*2;
+                this.xColorPadding = 77*3*2;
             break;
+
+            case "3":
+                this.yColorPadding = 0;
+                this.xColorPadding = 77*6;
+            break;
+
+            case "4":
+                this.xColorPadding = 77*9;
+            break;
+
             case "5":
                 this.yColorPadding = 48*4;
             break;
 
+            case "6":
+                this.yColorPadding = 48*4;
+                this.xColorPadding = 77*3;
+            break;
+
             case "7":
                 this.yColorPadding = 48*4;
-                this.xColorPadding = 48*3*2
+                this.xColorPadding = 77*3*2
             break;
 
             case "8":
                 this.yColorPadding = 48*4;
-                this.xColorPadding = 48*3*3;
+                this.xColorPadding = 77*3*3;
             break;
         }
 
@@ -56,7 +76,7 @@ class Chicken {
             if (this.game.left) {
                 if(this.direction != "left"){
                     this.direction = "left";
-                    this.frameNumber = 2;
+                    this.frameNumber = 3;
                     this.yDirectionPadding = 48;
                     console.log(this.yDirectionPadding);
                     this.animator.setFrameCount(this.frameNumber);
@@ -71,7 +91,7 @@ class Chicken {
             if (this.game.right) {
                 if(this.direction != "right"){
                     this.direction = "right";
-                    this.frameNumber = 2;
+                    this.frameNumber = 3;
                     this.yDirectionPadding = 48*2;
                     console.log(this.yDirectionPadding);
                     this.animator.setFrameCount(this.frameNumber);
@@ -102,7 +122,7 @@ class Chicken {
             if (this.game.down) {
                 if(this.direction != "down"){
                     this.direction = "down";
-                    this.frameNumber = 2;
+                    this.frameNumber = 3;
                     this.yDirectionPadding = 0;
                     console.log(this.yDirectionPadding);
                     this.animator.setFrameCount(this.frameNumber);

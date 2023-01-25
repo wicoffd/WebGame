@@ -11,7 +11,21 @@ class Animator {
         this.xStart = xDirectionPadding;
     }
     setFrameCount(newFrameCount){
-        this.frameCount = newFrameCount;
+        switch(newFrameCount){
+            case 3:
+                this.totalTime = this.frameDuration*3;
+            break;
+
+            case 1:
+                this.totalTime = this.frameDuration*1;
+            break;
+
+            default:
+                console.log("set framecount failed");
+            break;
+
+        }
+        
         //this.totalTime = this.frameCount * frameDuration;
     }
     drawFrame(tick, ctx, x, y, scale) {
