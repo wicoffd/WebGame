@@ -14,7 +14,9 @@ class GameEngine {
         this.mouse = null;
         this.wheel = null;
         this.left = false;
+        this.leftUp = true;
         this.right = false;
+        this.rightUp = true;
         this.up = false;
         this.down = false;
         this.A = false;
@@ -66,11 +68,12 @@ class GameEngine {
                 case "ArrowLeft":
                 case "KeyA":
                     that.left = true;
-                    
+                    that.leftUp = false;
                     break;
                 case "ArrowRight":
                 case "KeyD":
                     that.right = true;
+                    that.rightUp = false;
                     break;
                 case "ArrowUp":
                 case "KeyW":
@@ -96,10 +99,12 @@ class GameEngine {
                 case "ArrowLeft":
                 case "KeyA":
                     that.left = false;
+                    that.leftUp = true;
                     break;
                 case "ArrowRight":
                 case "KeyD":
                     that.right = false;
+                    that.rightUp = true;
                     break;
                 case "ArrowUp":
                 case "KeyW":

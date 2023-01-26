@@ -86,8 +86,11 @@ class Player {
                 }
                 this.velocity.x -= MIN_WALK;
                 this.xPos += this.velocity.x;
-                
-            }
+                if(this.game.leftUp){
+                    this.frameNumber = 1;
+                    this.animator.setFrameCount(1);
+                }
+            } 
             if (this.game.right) {
                 if(this.direction != "right"){
                     this.direction = "right";
@@ -102,7 +105,7 @@ class Player {
                 this.velocity.x += MIN_WALK;
                 this.xPos += this.velocity.x;
                 
-            }
+            } 
             if (this.game.up) {
                 if(this.direction != "up"){
                     this.direction = "up";
@@ -136,13 +139,15 @@ class Player {
                 this.yPos += this.velocity.y;
                 
             }
-            
+           
         }
+        
+        
        
        
     };
     draw(ctx) {
-        this.animator.drawFrame(this.game.clockTick,ctx,this.xPos,this.yPos,6)
+        this.animator.drawFrame(this.game.clockTick,ctx,this.xPos,this.yPos,1)
         
         //ctx.drawImage(ASSET_MANAGER.getAsset("../Assets/Mouse.png"),0,0);
     }
