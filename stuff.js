@@ -7,7 +7,7 @@ class Stuff {
         this.width = 1280;
         this.height = 768;
 
-        this.map = ASSET_MANAGER.getAsset("./MapHouse_debug.png");
+        this.map = ASSET_MANAGER.getAsset("./MapHouse.png");
     };
 
     update(){
