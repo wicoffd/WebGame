@@ -16,10 +16,10 @@ ASSET_MANAGER.downloadAll(() => {
 	var background = new Image();
 	background.src = "./MapHouse.png";
 	
-	//gameEngine.addEntity(new Mouse(gameEngine,"3","left",xPos1,yPos1));
-	//gameEngine.addEntity(new Chicken(gameEngine,"2","left",xPos1,yPos1));
-	//gameEngine.addEntity(new Owl(gameEngine,"4","left",xPos1,yPos1));
-	gameEngine.addEntity(new Player(gameEngine,"1","",xPos1,yPos1));
+	gameEngine.addEntity(new Mouse(gameEngine,"3","left",250,420));
+	gameEngine.addEntity(new Chicken(gameEngine,"1","left",910,500));
+	gameEngine.addEntity(new Owl(gameEngine,"4","left",500,450));
+	gameEngine.addEntity(new Player(gameEngine,"1","",700,600));
 	gameEngine.init(ctx);
 
 	gameEngine.start();
