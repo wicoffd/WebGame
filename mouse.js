@@ -138,7 +138,8 @@ class Mouse {
        
     };
     draw(ctx) {
-        this.animator.drawFrame(this.game.clockTick,ctx,this.xPos,this.yPos,1)
+        this.animator.drawFrame(this.game.clockTick, ctx,
+            this.xPos - this.game.camera.x, this.yPos - this.game.camera.y, 1)
         
         //ctx.drawImage(ASSET_MANAGER.getAsset("../Assets/Mouse.png"),0,0);
     }

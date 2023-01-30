@@ -120,7 +120,9 @@ class Chicken {
        
     };
     draw(ctx) {
-        this.animator.drawFrame(this.game.clockTick,ctx,this.xPos,this.yPos,.75)
+        this.animator.drawFrame(this.game.clockTick, ctx,
+            this.xPos - this.game.camera.x,
+            this.yPos - this.game.camera.y, .75)
         
         //ctx.drawImage(ASSET_MANAGER.getAsset("../Assets/Mouse.png"),0,0);
     }

@@ -18,6 +18,8 @@ class LittleDog {
 
     draw(ctx) {
         //ctx.drawImage(ASSET_MANAGER.getAsset("./doggy.png"),0,0);
-        this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y,1);
+        this.animator.drawFrame(this.game.clockTick, ctx,
+            this.x - this.game.camera.x, this.y - this.game.camera.y,
+            1);
     };
 }

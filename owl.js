@@ -140,7 +140,10 @@ class Owl {
        
     };
     draw(ctx) {
-        this.animator.drawFrame(this.game.clockTick,ctx,this.xPos,this.yPos,.8)
+        this.animator.drawFrame(this.game.clockTick, ctx,
+            this.xPos - this.game.camera.x,
+            this.yPos - this.game.camera.y,
+            .8)
         
         //ctx.drawImage(ASSET_MANAGER.getAsset("../Assets/Mouse.png"),0,0);
     }
