@@ -1,10 +1,11 @@
 class LittleDog {
-    constructor(game) {
-        this.game = game;
-        this.animator = new Animator(ASSET_MANAGER.getAsset("./doggy.png"), 0,  0, 47.3, 28, 3, 0.1);
+    constructor(game){
 
-        this.x = 0;
-        this.y = 300;
+        this.game = game;
+        this.animator = new Animator(ASSET_MANAGER.getAsset("./doggy.png"), 0,  0, 48, 48, 3, 0.1);
+
+        this.x = 670;
+        this.y = 600;
         this.speed = 0;
     };
 
@@ -17,6 +18,6 @@ class LittleDog {
 
     draw(ctx) {
         //ctx.drawImage(ASSET_MANAGER.getAsset("./doggy.png"),0,0);
-        this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y);
+        this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y,1);
     };
 }
