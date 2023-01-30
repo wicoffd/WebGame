@@ -148,7 +148,7 @@ class Player {
     };
     draw(ctx) {
         this.animator.drawFrame(this.game.clockTick,ctx,this.xPos,this.yPos,1)
-        
+        console.log(this.xPos + " "+ this.yPos)
         //ctx.drawImage(ASSET_MANAGER.getAsset("../Assets/Mouse.png"),0,0);
     }
 }
