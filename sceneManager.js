@@ -4,6 +4,7 @@ class SceneManager {
         this.game.camera = this;
         this.x = 0;
         this.y = 0;
+        this.game.ctx.transform(2, 0, 0, 2, -512, -384);
         
         // spawn player in middle
         this.midpoint_x = this.game.ctx.canvas.width / 2;
