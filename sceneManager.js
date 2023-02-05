@@ -8,7 +8,7 @@ class SceneManager {
         // spawn player in middle
         this.midpoint_x = this.game.ctx.canvas.width / 2;
         this.midpoint_y = this.game.ctx.canvas.height / 2;
-        this.player = new Player(this.game,"1","",348, 450);
+        this.player = new Player(this.game,"1","",this.midpoint_x, this.midpoint_y);
 
         this.loadLevel();
     };
@@ -22,12 +22,16 @@ class SceneManager {
                 this.game.addEntity(new Wall(gameEngine, wall.x, wall.y, wall.width, wall.height));
             }
         }
-
-
-        gameEngine.addEntity(new Owl(gameEngine,"4","left",500,450));
-        gameEngine.addEntity(new Owl(gameEngine,"6","left",430,450));
-        gameEngine.addEntity(new Owl(gameEngine,"8","left",450,450));
-        gameEngine.addEntity(new Owl(gameEngine,"1","left",460,410));
+        if (this.level.owl) {
+            for (var i = 0; i < this.level.owl.length; i++) {
+                let owl = this.level.owl[i];
+                this.game.addEntity(new Owl(gameEngine,this.player, owl.type, owl.direction, owl.xPos, owl.yPos));
+            }
+        }
+        //gameEngine.addEntity(new Owl(gameEngine,this.player,"4","left",500,453));
+        //gameEngine.addEntity(new Owl(gameEngine,this.player,"6","left",430,450));
+        //gameEngine.addEntity(new Owl(gameEngine,this.player,"8","left",450,450));
+        //gameEngine.addEntity(new Owl(gameEngine,"1","left",460,410));
         
         this.game.addEntity(this.player);
         
@@ -38,7 +42,6 @@ class SceneManager {
         gameEngine.addEntity(new Chicken(gameEngine,"3","left",910,500));
         gameEngine.addEntity(new Chicken(gameEngine,"8","left",920,470));
         gameEngine.addEntity(new LittleDog(gameEngine));
-        //gameEngine.addEntity(new Wall(gameEngine,348,410));
         
         this.game.addEntity(new Stuff(this.game));
     };

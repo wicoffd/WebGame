@@ -6,18 +6,11 @@ class Player {
         this.game = game;
         this.yColorPadding = 0;
         this.xColorPadding = 0;
-        //this.velocity = { x: 0, y: 0 };
-
-        //this.MIN_WALK = 5;
-        
         
         var yHeight = 48;
         this.direction  = direction;
         var yDirectionPadding = 48*4;
         this.frameNumber = 1;
-        
-        //this.BB = new BoundingBox((this.xPos + 15) - this.game.camera.x, (this.yPos + 48 - 7) - this.game.camera.y, 20, 7);
-
         this.updateBB();
         this.setColor();
         //this.animator = new Animator(ASSET_MANAGER.getAsset("./Owl.png"),0 + this.xColorPadding ,this.yColorPadding + yDirectionPadding,xWidth,yHeight,frameNumber,.2)
@@ -27,7 +20,6 @@ class Player {
 
     updateBB() {
         this.lastBB = this.BB;
-        //this.BB = new BoundingBox((this.xPos + 15) - this.game.camera.x, (this.yPos + 48 - 7) - this.game.camera.y, 20, 7);
         this.BB = new BoundingBox((this.xPos + 15), (this.yPos + 41), 20, 8);
     };
 
@@ -80,9 +72,9 @@ class Player {
     update(){
         //Character controller code from mario.js
         //Reformat / delete later
-        //this.velocity = { x: 0, y: 0 };
+
         this.velocity = { up: 0, down: 0, left: 0, right: 0 }; // movement code
-        var MIN_WALK = 1;
+        var MIN_WALK = 75;
         this.updateBB();
 
         var that = this;
@@ -118,12 +110,10 @@ class Player {
             } 
         });
 
-        that.updateBB(); 
+       // that.updateBB(); 
 
         // movement controller
-        if (Math.abs(this.velocity.left) < MIN_WALK || Math.abs(this.velocity.right) < MIN_WALK) {  // slower than a walk // starting, stopping or turning around
-            //this.velocity.left = 0;
-            //this.velocity.right = 0;
+        if (Math.abs(this.velocity.left) < MIN_WALK || Math.abs(this.velocity.right) < MIN_WALK) {  // slower than a walk // starting, stopping or turning aroun
             this.state = 0;
             if (this.game.left) {
                 if(this.direction != "left"){
@@ -137,7 +127,9 @@ class Player {
                     
                 }
                 this.velocity.left += MIN_WALK;
-                this.xPos -= this.velocity.left;
+                //possible check for collision
+                this.xPos -= this.velocity.left * this.game.clockTick;;
+                that.updateBB();
                 if(this.game.leftUp){
                     this.frameNumber = 1;
                     this.animator.setFrameCount(1);
@@ -155,7 +147,8 @@ class Player {
 
                 }
                 this.velocity.right += MIN_WALK;
-                this.xPos += this.velocity.right;
+                this.xPos += this.velocity.right * this.game.clockTick;;
+                that.updateBB();
                 
             } 
             if (this.game.up) {
@@ -171,8 +164,8 @@ class Player {
                     //this.animator = new SimpleAnimator(ASSET_MANAGER.getAsset("../Assets/MouseModded.png"),0,0 + this.yDirectionPadding,25,25,this.frameNumber,.2)
                 }
                 this.velocity.up += MIN_WALK;
-                this.yPos -= this.velocity.up;
-                
+                this.yPos -= this.velocity.up * this.game.clockTick;;
+                that.updateBB();
             }
             if (this.game.down) {
                 if(this.direction != "down"){
@@ -184,12 +177,10 @@ class Player {
                     // console.log(this.yDirectionPadding);
                     this.animator.setYStart(this.yDirectionPadding+this.yColorPadding);
                     this.animator.setXStart(this.xColorPadding);
-                    //this.animator.update();
-                    //this.animator = new SimpleAnimator(ASSET_MANAGER.getAsset("../Assets/MouseModded.png"),0,0 + this.yDirectionPadding,25,25,this.frameNumber,.2)
                 }
                 this.velocity.down += MIN_WALK;
-                this.yPos += this.velocity.down;
-                
+                this.yPos += this.velocity.down * this.game.clockTick;;
+                that.updateBB();
             }
            
         }

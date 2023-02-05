@@ -7,7 +7,6 @@ ASSET_MANAGER.queueDownload("./Owl.png")
 ASSET_MANAGER.queueDownload("./hero.png")
 ASSET_MANAGER.queueDownload("./doggy.png")
 ASSET_MANAGER.queueDownload("./MapHouse.png")
-ASSET_MANAGER.queueDownload("./CollisionTile.png")
 
 
 ASSET_MANAGER.downloadAll(() => {
