@@ -23,6 +23,13 @@ class SceneManager {
                 this.game.addEntity(new Wall(gameEngine, wall.x, wall.y, wall.width, wall.height));
             }
         }
+        
+        if (this.level.item) {
+            for (var i = 0; i < this.level.item.length; i++) {
+                let item = this.level.item[i];
+                this.game.addEntity(new Item(gameEngine, item.x, item.y, item.width, item.height, item.elevation));
+            }
+        }
         // if (this.level.owl) {
         //     for (var i = 0; i < this.level.owl.length; i++) {
         //         let owl = this.level.owl[i];
