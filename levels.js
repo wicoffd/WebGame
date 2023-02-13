@@ -32,7 +32,7 @@ var levelOne = {
     ],
 
     //items are all the objects in the rooms that are not near walls.
-    //Elevation: 1 on the ground (ex. desk), 2 just above the ground (ex. table), 3 extends into the air (ex. lamp)
+    //Elevation: 1 on the ground (ex. crate), 2 just above the ground (ex. table), 3 extends into the air (ex. lamp)
     //Elevation is used to determine collision with some enemies
     item:
     [
@@ -54,10 +54,4 @@ var levelOne = {
         { x: 169, y: 321, width: 32, height: 41, elevation: 2}, //Bedroom middle table
 
     ],
-
-    owl:
-    [
-        { color: "7", direction: "down", xPos: 500, yPos: 453}, 
-        { color: "1", direction: "down", xPos: 300, yPos: 453}, 
-    ]
 };
