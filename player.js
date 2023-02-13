@@ -167,10 +167,10 @@ class Player {
                 //possible check for collision
                 this.xPos -= this.velocity.left * this.game.clockTick;;
                 that.updateBB();
-                if(this.game.leftUp){
-                    this.frameNumber = 1;
-                    this.animator.setFrameCount(1);
-                }
+                //if(this.game.leftUp){
+                //    this.frameNumber = 1;
+                 //   this.animator.setFrameCount(1);
+                //}
             } 
             if (this.game.right) {
                 if(this.direction != "right"){
