@@ -13,11 +13,32 @@ class SceneManager {
         this.loadLevel();
     };
 
-    loadLevel() {
-        gameEngine.addEntity(new Owl(gameEngine,"4","left",500,450));
-        gameEngine.addEntity(new Owl(gameEngine,"6","left",430,450));
-        gameEngine.addEntity(new Owl(gameEngine,"8","left",450,450));
-        gameEngine.addEntity(new Owl(gameEngine,"1","left",460,410));
+    loadLevel() { // add varaible for level name
+        this.level = levelOne;
+
+        if (this.level.wall) {
+            for (var i = 0; i < this.level.wall.length; i++) {
+                let wall = this.level.wall[i];
+                this.game.addEntity(new Wall(gameEngine, wall.x, wall.y, wall.width, wall.height));
+            }
+        }
+        // if (this.level.owl) {
+        //     for (var i = 0; i < this.level.owl.length; i++) {
+        //         let owl = this.level.owl[i];
+        //         this.game.addEntity(new Owl(gameEngine,this.player, owl.type, owl.direction, owl.xPos, owl.yPos));
+        //     }
+        // }
+        if (this.level.entities) {
+            for (var i = 0; i < this.level.entities.length; i++) {
+                let entities = this.level.entities[i];
+                this.game.addEntity(new Entity(gameEngine,this.player, entities.type, entities.color,
+                    entities.direction, entities.xPos, entities.yPos, entities.range));
+            }
+        }
+        //gameEngine.addEntity(new Owl(gameEngine,this.player,"4","left",500,453));
+        //gameEngine.addEntity(new Owl(gameEngine,this.player,"6","left",430,450));
+        //gameEngine.addEntity(new Owl(gameEngine,this.player,"8","left",450,450));
+        //gameEngine.addEntity(new Owl(gameEngine,"1","left",460,410));
         
         this.game.addEntity(this.player);
         
@@ -37,7 +58,8 @@ class SceneManager {
         this.x = this.player.xPos - this.midpoint_x;
         this.y = this.player.yPos - this.midpoint_y;
     };
-
+    //TODO setLevel(levelname
+    // call loadlevel
     draw() {
     };
 }
