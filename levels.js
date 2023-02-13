@@ -54,4 +54,17 @@ var levelOne = {
         { x: 169, y: 321, width: 32, height: 41, elevation: 2}, //Bedroom middle table
 
     ],
+
+    owl:
+    [
+        { type: "7", direction: "down", xPos: 500, yPos: 453}, 
+        { type: "1", direction: "down", xPos: 300, yPos: 453}, 
+    ],
+    
+    entities:
+    [
+        { color:"4", type: "owl", direction: "left", xPos: 500, yPos: 453, range: 50}, 
+        { color:"7", type: "dog", direction: "down", xPos: 300, yPos: 453, range: 150},
+        { color:"7", type: "raccoon", direction: "down", xPos: 350, yPos: 453, range: 150}, 
+    ]
 };
