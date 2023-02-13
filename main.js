@@ -21,8 +21,8 @@ ASSET_MANAGER.downloadAll(() => {
 	
 	const ctx = canvas.getContext("2d");
 
-	var xPos1 = 10;
-	var yPos1 = 10;
+	// var xPos1 = 10;
+	// var yPos1 = 10;
 	// var background = new Image();
 	// background.src = "./MapHouse.png";
 	

@@ -4,11 +4,12 @@ class SceneManager {
         this.game.camera = this;
         this.x = 0;
         this.y = 0;
+        this.game.ctx.transform(2, 0, 0, 2, -512, -384);
         
         // spawn player in middle
         this.midpoint_x = this.game.ctx.canvas.width / 2;
         this.midpoint_y = this.game.ctx.canvas.height / 2;
-        this.player = new Player(this.game,"1","",this.midpoint_x, this.midpoint_y);
+        this.player = new Player(this.game,"1","down",this.midpoint_x, this.midpoint_y);
 
         this.loadLevel();
     };
