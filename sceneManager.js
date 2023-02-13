@@ -9,7 +9,7 @@ class SceneManager {
         // spawn player in middle
         this.midpoint_x = this.game.ctx.canvas.width / 2;
         this.midpoint_y = this.game.ctx.canvas.height / 2;
-        this.player = new Player(this.game,"1","",this.midpoint_x, this.midpoint_y);
+        this.player = new Player(this.game,"1","down",this.midpoint_x, this.midpoint_y);
 
         this.loadLevel();
     };
