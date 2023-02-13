@@ -17,7 +17,7 @@ class Player {
         
         this.setColor();
         //this.animator = new Animator(ASSET_MANAGER.getAsset("./Owl.png"),0 + this.xColorPadding ,this.yColorPadding + yDirectionPadding,xWidth,yHeight,frameNumber,.2)
-        this.animator = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0+this.xColorPadding, this.yDirectionPadding, 48, this.yHeight, 1, .2)
+        //this.animator = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0+this.xColorPadding, this.yDirectionPadding, 48, this.yHeight, 1, .2)
 
         this.animations = [];
         this.loadAnimations();
@@ -33,7 +33,7 @@ class Player {
 
         // idle animation (state = 0) (NOTE: is it necessary to make a new animation every time?)
         // facing down
-        this.animations[0][0] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0+this.xColorPadding, this.yDirectionPadding, 48, this.yHeight, 1, .2);
+        this.animations[0][0] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0+this.xColorPadding, 48*4, 48, this.yHeight, 1, .2);
         // facing left
         this.animations[0][1] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0+this.xColorPadding, 0, 48, this.yHeight, 1, 0.2);
         // facing right
@@ -43,7 +43,7 @@ class Player {
 
         // run animation (state = 1)
         // facing down
-        this.animations[1][0] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0+this.xColorPadding, this.yDirectionPadding, 48, this.yHeight, 3, .2);
+        this.animations[1][0] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0+this.xColorPadding, 48*4, 48, this.yHeight, 3, .2);
         // facing left
         this.animations[1][1] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0+this.xColorPadding, 0, 48, this.yHeight, 3, 0.2);
         // facing right
