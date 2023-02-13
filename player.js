@@ -114,7 +114,7 @@ class Player {
         var that = this;
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BB.collide(entity.BB)) {
-                if (entity instanceof Wall){  
+                if (entity instanceof Wall || entity instanceof Item){  
                     //console.log("Wall bot " + Math.round(entity.BB.bottom));
                     //console.log("player top " + Math.round(that.BB.top));
                     //console.log("Wall bot " + Math.round(entity.BB.bottom));
