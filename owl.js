@@ -1,17 +1,18 @@
 class Owl {
-    constructor(game,type,direction,xPos,yPos){
+    constructor(game,target,type,direction,xPos,yPos){
         this.type = type;
         this.xPos = xPos;
         this.yPos = yPos;
         this.game = game;
+        this.target = target;
         this.yColorPadding = 0;
         this.xColorPadding = 0;
-        
+        this.maxSpeed = 50;
         var yHeight = 48;
         this.direction  = direction;
         var yDirectionPadding = 0;
         var frameNumber = 3;
-        
+        this.inRange = false;
         this.setColor();
         //this.animator = new Animator(ASSET_MANAGER.getAsset("./Owl.png"),0 + this.xColorPadding ,this.yColorPadding + yDirectionPadding,xWidth,yHeight,frameNumber,.2)
         this.animator = new Animator(ASSET_MANAGER.getAsset("./Owl.png"),0+this.xColorPadding,0+yDirectionPadding,77,yHeight,frameNumber,.2)
@@ -136,9 +137,33 @@ class Owl {
                 
         //     }
         // }
-       
-       
+       //console.log(this.xPos + " "+ this.yPos);
+       //console.log(this.target.xPos + " " +this.target.yPos);
+        // var a = this.target.xPos - this.xPos;
+        // var b = this.target.yPos - this.yPos;
+        // var c = Math.sqrt(a*a+b*b);
+        // console.log(c);
+        this.transform();
     };
+    transform() {
+        const radius = 100;
+    
+        var dist = this.distance(this.target, this);
+        console.log(Math.round(dist));
+       
+        if(this.inRange==false){
+            console.log("checking");
+            if(Math.round(dist)<radius){
+                console.log("true");
+                this.inRange=true;}
+        }
+        if(this.inRange == true){
+            this.velocity = { x: (this.target.xPos - this.xPos) / dist * this.maxSpeed, y: (this.target.yPos - this.yPos) / dist * this.maxSpeed };
+            this.xPos += this.velocity.x * this.game.clockTick;
+            this.yPos += this.velocity.y * this.game.clockTick;
+        } 
+    }
+
     draw(ctx) {
         this.animator.drawFrame(this.game.clockTick, ctx,
             this.xPos - this.game.camera.x,
@@ -146,5 +171,8 @@ class Owl {
             .8)
         
         //ctx.drawImage(ASSET_MANAGER.getAsset("../Assets/Mouse.png"),0,0);
-    }
+    };
+    distance(var1, var2){
+        return Math.sqrt(Math.pow(var2.xPos - var1.xPos,2) + Math.pow(var2.yPos - var1.yPos,2));
+    };
 }
