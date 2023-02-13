@@ -30,15 +30,34 @@ var levelOne = {
         { x: 84, y: 288, width: 40, height: 56}, //left wall objects - tv table
 
     ],
+
+    //items are all the objects in the rooms that are not near walls.
+    //Elevation: 1 on the ground (ex. desk), 2 just above the ground (ex. table), 3 extends into the air (ex. lamp)
+    //Elevation is used to determine collision with some enemies
+    item:
+    [
+        //Living room objects
+        { x: 615, y: 460, width: 32, height: 40, elevation: 2}, //Living room table
+        { x: 575, y: 468, width: 15, height: 52, elevation: 2}, //Living room left couch
+        { x: 672, y: 468, width: 15, height: 52, elevation: 2}, //Living room right couch
+        { x: 602, y: 536, width: 62, height: 20, elevation: 2}, //Living room center couch
+
+        //Kitchen objects
+        { x: 989, y: 346, width: 33, height: 40, elevation: 2}, //Kitchen table
+        { x: 974, y: 350, width: 13, height: 22, elevation: 2}, //Kitchen chair left
+        { x: 1025, y: 350, width: 13, height: 22, elevation: 2}, //Kitchen chair right
+        { x: 1001, y: 385, width: 11, height: 7, elevation: 2}, //Kitchen chair bottom
+
+        //Bedroom objects
+        { x: 84, y: 416, width: 57, height: 28, elevation: 2}, //Bedroom bed
+        { x: 84, y: 400, width: 27, height: 17, elevation: 1}, //Bedroom bed side table
+        { x: 169, y: 321, width: 32, height: 41, elevation: 2}, //Bedroom middle table
+
+    ],
+
     owl:
     [
-        { type: "7", direction: "down", xPos: 500, yPos: 453}, 
-        { type: "1", direction: "down", xPos: 300, yPos: 453}, 
-    ],
-    entities:
-    [
-        { color:"4", type: "owl", direction: "left", xPos: 500, yPos: 453, range: 50}, 
-        { color:"7", type: "dog", direction: "down", xPos: 300, yPos: 453, range: 150},
-        { color:"7", type: "raccoon", direction: "down", xPos: 350, yPos: 453, range: 150}, 
+        { color: "7", direction: "down", xPos: 500, yPos: 453}, 
+        { color: "1", direction: "down", xPos: 300, yPos: 453}, 
     ]
 };
