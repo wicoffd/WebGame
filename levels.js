@@ -2,12 +2,13 @@ var levelOne = {
     wall: 
     [
         //Living room wall entities
-        { x: 426, y: 368, width: 408, height: 10}, //main room top wall
+        { x: 426, y: 308, width: 408, height: 70}, //main room top wall
         { x: 830, y: 448, width: 10, height: 195}, //main room right wall - long
         { x: 830, y: 334, width: 10, height: 65}, //main room right wall - short
         { x: 422, y: 448, width: 10, height: 195}, //main room left wall - long
         { x: 422, y: 288, width: 10, height: 112}, //main room left wall - short
-        { x: 426, y: 640, width: 408, height: 10}, //main room bottom wall
+        { x: 426, y: 640, width: 342, height: 10}, //main room bottom wall - left
+        { x: 800, y: 640, width: 32, height: 10}, //main room bottom wall - right
         
         //Kitchen wall entities
         { x: 836, y: 490, width: 354, height: 10}, //kitchen bottom wall
@@ -27,8 +28,12 @@ var levelOne = {
         { x: 374, y: 292, width: 52, height: 40}, //right wall objects - desk + chair
         { x: 386, y: 330, width: 40, height: 24}, //right wall objects - desk + trash
         { x: 400, y: 350, width: 20, height: 30}, //right wall objects - plant
-        { x: 84, y: 288, width: 40, height: 56}, //left wall objects - tv table
+        { x: 84, y: 288, width: 40, height: 56}, //left wall objects - tv table 
 
+    ],
+
+    door:[
+        { x: 768, y: 640, width: 31, height: 10, direction: "north"}, //main room bottom wall
     ],
 
     //items are all the objects in the rooms that are not near walls.
@@ -55,16 +60,20 @@ var levelOne = {
 
     ],
 
-    owl:
-    [
-        { type: "7", direction: "down", xPos: 500, yPos: 453}, 
-        { type: "1", direction: "down", xPos: 300, yPos: 453}, 
-    ],
-    
     entities:
     [
-        { color:"4", type: "owl", direction: "left", xPos: 500, yPos: 453, range: 50}, 
-        { color:"7", type: "dog", direction: "down", xPos: 300, yPos: 453, range: 150},
-        { color:"7", type: "raccoon", direction: "down", xPos: 350, yPos: 453, range: 150}, 
+        { color:"4", type: "cat", direction: "left", xPos: 170, yPos: 360, range: 100},
+
+        //{ color:"4", type: "bear", direction: "left", xPos: 170, yPos: 350+48, range: 100},
+        //{ color:"4", type: "chicken", direction: "left", xPos: 175, yPos: 350+48+48, range: 100},
+        //{ color:"4", type: "sheep", direction: "left", xPos: 185, yPos: 350+48+48+48, range: 100},
+        //{ color:"4", type: "wolf", direction: "left", xPos: 180+48*4, yPos: 350+48+48+48+48, range: 100},
+        //{ color:"4", type: "pig", direction: "left", xPos: 195, yPos: 350, range: 100},
+        //{ color:"4", type: "goose", direction: "left", xPos: 190, yPos: 350+48+48+48+48+48, range: 100},
+        //{ color:"4", type: "raccoon", direction: "left", xPos: 200, yPos: 350+48+48+48+48+48+48, range: 100},  
+
+        { color:"7", type: "dog", direction: "down", xPos: 740, yPos: 550, range: 150},
+        { color:"7", type: "mouse", direction: "down", xPos: 860, yPos: 310, range: 100}, 
+        { color:"1", type: "mouse", direction: "down", xPos: 908, yPos: 270, range: 100},
     ]
 };

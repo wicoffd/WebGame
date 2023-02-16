@@ -9,23 +9,32 @@ class Entity {
         this.target = target;
         this.yColorPadding = 0;
         this.xColorPadding = 0;
-        this.maxSpeed = 50;
+        this.maxSpeed = 70;
+        this.xBB = 5;
+        this.yBB = 10;
+        this.scale = 1;
         this.yHeight = 48;
         this.xWidth = 48;
-        this.direction  = direction; // 0 = down, 1 = left, 2 = right, 3 = up
+        this.direction = direction; // 0 = down, 1 = left, 2 = right, 3 = up
         this.yDirectionPadding = 0;
         this.frameNumber = 3;
         this.inRange = false;
         this.radius = detectRange;
+        this.state = 0;
         if(this.type == "owl"){this.xWidth = 77;}
         this.setColor();
         this.setType();
-        //this.animator = new Animator(ASSET_MANAGER.getAsset("./Owl.png"),0 + this.xColorPadding ,this.yColorPadding + yDirectionPadding,xWidth,yHeight,frameNumber,.2)
-        // this.animator = new Animator(ASSET_MANAGER.getAsset(this.asset),0+this.xColorPadding,0+yDirectionPadding,this.xWidth,this.yHeight,frameNumber,.2)
-		
+        this.updateBB();
 		this.animations = [];
         this.loadAnimations();
 
+    };
+
+    updateBB() {
+        this.lastBB = this.BB;
+
+        this.BB = new BoundingBox((this.xPos)+(this.xBB*this.scale/2), (this.yPos)+(this.yBB*this.scale), 
+        this.xWidth*this.scale-(this.xBB*this.scale), this.yHeight*this.scale-(this.yBB*this.scale));
     };
 	
 	// initialize animations for the current entity
@@ -66,10 +75,19 @@ class Entity {
 
             case "dog":
                 this.asset = "./doggy.png";
+                this.scale = .6;
+                this.maxSpeed = 70;
+                this.xBB = 15;
+                this.yBB = 20;
+                
             break;
 
             case "mouse":
                 this.asset = "./Mouse.png";
+                this.scale = .6;
+                this.maxSpeed = 60;
+                this.xBB = 20;
+                this.yBB = 33;
             break;
 
             case "bear":
@@ -82,14 +100,20 @@ class Entity {
 
             case "cat":
                 this.asset = "./Cat.png";
+                this.scale = .50;
+                this.maxSpeed = 70;
+                this.xBB = 15;
+                this.yBB = 20;
             break;
 
             case "chicken":
                 this.asset = "./Chicken.png";
+                this.scale = .4;
             break;
 
             case "goose":
                 this.asset = "./Geese.png";
+                this.scale = .5;
             break;
 
             case "pig":
@@ -98,14 +122,17 @@ class Entity {
 
             case "raccoon":
                 this.asset = "./Raccoon.png";
+                this.scale = .5;
             break;
 
             case "sheep":
                 this.asset = "./Sheep.png";
+                this.scale = .80;
             break;
 
             case "wolf":
                 this.asset = "./Wolf.png";
+                this.scale = .6;
             break;
 
             default:
@@ -163,7 +190,51 @@ class Entity {
 
     }
     update(){
-		this.state = 0;
+        this.updateBB();
+
+		
+        var dist = this.distance(this.target, this);
+        /*this.velocity = { right: (this.target.xPos - this.xPos) / dist * this.maxSpeed,
+                            left: (this.target.xPos - this.xPos) / dist * this.maxSpeed, 
+                            up: (this.target.yPos - this.yPos) / dist * this.maxSpeed,
+                            down: (this.target.yPos - this.yPos) / dist * this.maxSpeed };*/
+
+        var that = this;
+        this.game.entities.forEach(function (entity) {
+            if (entity.BB && that.BB.collide(entity.BB)) {
+                if ((entity instanceof Wall || entity instanceof Item) && dist < 300){  
+                    //Vertical Collision
+                    if (Math.round(that.BB.top) == entity.BB.bottom || Math.round(that.BB.top) == (entity.BB.bottom+1) || Math.round(that.BB.top) == (entity.BB.bottom-1)) { 
+                        that.yPos -= that.velocity.up * that.game.clockTick;
+                        that.yPos = that.yPos + .05;
+                        //console.log("Wall Above");
+                        that.updateBB();   
+                    } else
+                    if (Math.round(that.BB.bottom) == entity.BB.top || Math.round(that.BB.bottom) == (entity.BB.top+1) || Math.round(that.BB.bottom) == (entity.BB.top-1)) 
+                    { 
+                        that.yPos -= that.velocity.down * that.game.clockTick;
+                        that.yPos = that.yPos - .05;
+                        //console.log("Wall Below");
+                        that.updateBB();   
+                    } 
+
+                    //Horizontal Collision
+                    if (Math.round(that.BB.right) == entity.BB.left || Math.round(that.BB.right) == (entity.BB.left + 1) || Math.round(that.BB.right) == (entity.BB.left - 1) ) { 
+                        that.xPos -= that.velocity.right * that.game.clockTick;
+                        that.xPos = that.xPos - .05;
+                        //console.log("Wall to right");
+                        that.updateBB();   
+                    } else 
+                    if (Math.round(that.BB.left) == entity.BB.right || Math.round(that.BB.left) == (entity.BB.right - 1) || Math.round(that.BB.left) == (entity.BB.right + 1)) 
+                    { 
+                        that.xPos -= that.velocity.left * that.game.clockTick;
+                        that.xPos = that.xPos + .05;
+                        //console.log("Wall to left");
+                        that.updateBB();   
+                    }                                        
+                }           
+            } 
+        });
 		
 		if(this.direction = "left"){
 			// hussein's new code
@@ -184,8 +255,9 @@ class Entity {
             // hussein's new code
 			this.state = 1;
         }
+
        
-        this.transform();
+        if(this.game.alive){this.transform();}
     };
 	
     transform() {
@@ -193,26 +265,27 @@ class Entity {
         var dist = this.distance(this.target, this);
     
         if(this.inRange==false){
-            console.log("checking");
             if(dist<this.radius){
-                console.log("true");
                 this.inRange=true;}
         }
         if(this.inRange == true){
-            this.velocity = { x: (this.target.xPos - this.xPos) / dist * this.maxSpeed, y: (this.target.yPos - this.yPos) / dist * this.maxSpeed };
-            this.setDirection(this.velocity.x,this.velocity.y);
-            this.xPos += this.velocity.x * this.game.clockTick;
-            this.yPos += this.velocity.y * this.game.clockTick;
+            this.velocity = { right: (this.target.xPos - this.xPos) / dist * this.maxSpeed,
+                            left: (this.target.xPos - this.xPos) / dist * this.maxSpeed, 
+                            up: (this.target.yPos - this.yPos) / dist * this.maxSpeed,
+                            down: (this.target.yPos - this.yPos) / dist * this.maxSpeed };
+            this.setDirection(this.velocity.right,this.velocity.up);
+            
+            
+            this.xPos += this.velocity.right * this.game.clockTick;
+            this.yPos += this.velocity.up * this.game.clockTick;
         } 
+        this.updateBB();
     }
 
     draw(ctx) {
-        // this.animator.drawFrame(this.game.clockTick, ctx,
-        //    this.xPos - this.game.camera.x,
-        //    this.yPos - this.game.camera.y,
-        //    .8)
 		
 		var directionInt;
+        
 		
 		switch (this.direction) {
             case "down":
@@ -227,63 +300,52 @@ class Entity {
             case "up":
                 directionInt = 3;
             break;
+            default:
+            break;
         }
 		
 		this.animations[this.state][directionInt].drawFrame(this.game.clockTick, ctx,
             this.xPos - this.game.camera.x,
             this.yPos - this.game.camera.y,
-            .8)
+            this.scale)
+        
+        //ctx.strokeStyle = 'Red';
+        //ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
 
     };
     setDirection(xVel,yVel){ // remove commented debug code once complete.
         if(xVel>0 && yVel>0){ //if xVel is positive // player is right and down from entitiy
-            //this.direction = "right";
             if(Math.pow(xVel,2)>Math.pow(yVel,2)){
                 this.direction = "right";
-                //console.log("xVel > yVel"+ " right");
             }else{
                 this.direction = "down";
-                //console.log("yVel > xVel"+" down");
             }
-            //console.log(this.direction + " down");
         }
         else if(xVel<0 && yVel>0){ // if xVel is negative // player is left and down from entitiy
-            //this.direction = "left";
             if(Math.pow(xVel,2)>Math.pow(yVel,2)){
                 this.direction = "left";
-                //console.log("xVel > yVel"+ " left");
             }else{
                 this.direction = "down";
-                //console.log("yVel > xVel"+ " down");
             }
-            //console.log(this.direction + " down");
         }
         else if(xVel>0 && yVel<0){ // if yVel is positive // player is right and up from entitiy
-            //this.direction = "up";
             if(Math.pow(xVel,2)>Math.pow(yVel,2)){
                 this.direction = "right";
-                //console.log("xVel > yVel"+ " right");
             }else{
                 this.direction = "up";
-                //console.log("yVel > xVel"+ " up");
             }
-            //console.log(this.direction + " right");
         }
         else if(xVel<0 && yVel<0){ // if yVel is negative // player is left and down from entitiy
             
             if(Math.pow(xVel,2)>Math.pow(yVel,2)){
                 this.direction = "left";
-                //console.log("xVel > yVel"+ " left");
             }else{
                 this.direction = "up";
-                //console.log("yVel > xVel"+ " up");
             }
-                
-            //console.log(this.direction + " left");
         }
 
     };
-    distance(var1, var2){
+    distance(var1, var2){//Var 1 = player, var 2 = enemy
         return Math.sqrt(Math.pow(var2.xPos - var1.xPos,2) + Math.pow(var2.yPos - var1.yPos,2));
     };
 }

@@ -8,7 +8,7 @@ class GameEngine {
 
         // Everything that will be updated and drawn each frame
         this.entities = [];
-
+        this.alive = true;
         // Information on the input
         this.click = null;
         this.mouse = null;
@@ -21,6 +21,7 @@ class GameEngine {
         this.down = false;
         this.A = false;
         this.B = false;
+        this.enter = false;
 
         // Options and the Details
         this.options = options || {
@@ -50,20 +51,20 @@ class GameEngine {
             x: e.clientX - this.ctx.canvas.getBoundingClientRect().left,
             y: e.clientY - this.ctx.canvas.getBoundingClientRect().top
         });
-        function mouseListener (e) {
+        function mouseListener(e) {
             that.mouse = getXandY(e);
         }
-        function mouseClickListener (e) {
+        function mouseClickListener(e) {
             that.click = getXandY(e);
             //if (PARAMS.DEBUG) console.log(that.click);
         }
-        function wheelListener (e) {
+        function wheelListener(e) {
             e.preventDefault(); // Prevent Scrolling
             that.wheel = e.deltaY;
         }
-        function keydownListener (e) {
+        function keydownListener(e) {
             that.keyboardActive = true;
-           // console.log(e);
+            // console.log(e);
             switch (e.code) {
                 case "ArrowLeft":
                 case "KeyA":
@@ -91,9 +92,12 @@ class GameEngine {
                 case "Period":
                     that.A = true;
                     break;
+                case "Enter":
+                    that.enter = true;
+                    break;
             }
         }
-        function keyUpListener (e) {
+        function keyUpListener(e) {
             that.keyboardActive = false;
             switch (e.code) {
                 case "ArrowLeft":
@@ -121,6 +125,9 @@ class GameEngine {
                 case "KeyX":
                 case "Period":
                     that.A = false;
+                    break;
+                case "Enter":
+                    that.enter = false;
                     break;
             }
         }
@@ -153,7 +160,7 @@ class GameEngine {
             e.preventDefault(); // Prevent Context Menu
             this.rightclick = getXandY(e);
         });
-        
+
 
         that.mousemove = mouseListener;
         that.leftclick = mouseClickListener;
@@ -169,25 +176,29 @@ class GameEngine {
         this.ctx.canvas.addEventListener("keydown", that.keydown, false);
 
         this.ctx.canvas.addEventListener("keyup", that.keyup, false);
-        //this.ctx.canvas.addEventListener("keydown", event => this.keys[event.key] = true);
-        //this.ctx.canvas.addEventListener("keyup", event => this.keys[event.key] = false);
-        
+        this.ctx.canvas.addEventListener("enter", that.keyup, false);
+
     };
 
     addEntity(entity) {
         this.entities.push(entity);
-        
+
     };
+    clearEntities() {
+        this.entities = [];
+    }
 
     draw() {
         // Clear the whole canvas with transparent color (rgba(0, 0, 0, 0))
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
-        
-        // Draw latest things first
-        for (let i = this.entities.length - 1; i >= 0; i--) {
-            this.entities[i].draw(this.ctx, this);
-        }
 
+        // Draw latest things first
+        if (this.entities.length > 0) {// delete
+            for (let i = this.entities.length - 1; i >= 0; i--) {
+                this.entities[i].draw(this.ctx, this);
+            }
+        }
+        console.log("draw this.ctx");
         this.camera.draw(this.ctx);
     };
 
@@ -203,7 +214,7 @@ class GameEngine {
         }
 
         this.camera.update();
-        
+
         for (let i = this.entities.length - 1; i >= 0; --i) {
             if (this.entities[i].removeFromWorld) {
                 this.entities.splice(i, 1);
