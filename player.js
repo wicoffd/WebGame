@@ -10,6 +10,8 @@ class Player {
         this.game.alive = true; // when player is constructed set game.alive to true.
         this.state = 0; // 0 = idle, 1 = walking
         this.direction = direction; // 0 = down, 1 = left, 2 = right, 3 = up 
+        this.collectableCounter = 0;
+        this.collectableGoal = 3;
 
         this.yDirectionPadding = 48 * 4;
         this.frameNumber = 1;
@@ -129,7 +131,7 @@ class Player {
         var that = this;
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BB.collide(entity.BB)) {
-                if (entity instanceof Wall || entity instanceof Item) {
+                if (entity instanceof Wall || entity instanceof Item || (entity instanceof Door && that.collectableCounter != that.collectableGoal)) {
                     //Vertical Collision
                     if (Math.round(that.BB.top) == entity.BB.bottom || Math.round(that.BB.top) == (entity.BB.bottom + 1) || Math.round(that.BB.top) == (entity.BB.bottom - 1)) {
                         that.velocity.up -= MIN_WALK;
@@ -154,15 +156,23 @@ class Player {
                             that.updateBB();
                         }
                 }
-                if (entity instanceof Door) {
+                //If all the collectables are found in a map, the door is available
+                if (entity instanceof Door && that.collectableCounter == that.collectableGoal) {
                     if (Math.round(that.BB.bottom) == entity.BB.top || Math.round(that.BB.bottom) == (entity.BB.top - 1) || Math.round(that.BB.bottom) == (entity.BB.top + 1)) {
                         console.log("door found");
                     }
                 }
-
+                //If any enemy is hit, the player dies
                 if (entity instanceof Entity) {
                     that.state = 2;
                     that.die();
+                }
+                //If a collectable is hit by the player, the collectable is removed from the world and added to the players collectable count
+                if (entity instanceof Collectable) {
+                    console.log("item found");
+                    that.collectableCounter += 1;
+                    entity.removeFromWorld = true;
+                    console.log(that.collectableCounter);
                 }
             }
         });
