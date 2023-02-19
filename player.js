@@ -17,9 +17,9 @@ class Player {
         this.setColor();
 
         this.animations = [];
-        console.log("load animations");
+        //console.log("load animations");
         this.loadAnimations();
-        console.log("animations loaded");
+        //console.log("animations loaded");
     };
 
     loadAnimations() {
@@ -29,27 +29,32 @@ class Player {
                 this.animations[i].push([]);
             }
         }
-
+        //spritesheet, xStart, yStart, width, height
         // idle animation (state = 0) (NOTE: is it necessary to make a new animation every time?)
         // facing down
         this.animations[0][0] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48 * 4, 48, this.yHeight, 1, .2);
         // facing left
-        this.animations[0][1] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 0, 48, this.yHeight, 1, 0.2);
+        this.animations[0][1] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48*6, 48, this.yHeight, 1, 0.2);
         // facing right
-        this.animations[0][2] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48, 48, this.yHeight, 1, 0.2);
+        this.animations[0][2] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48*7, 48, this.yHeight, 1, 0.2);
         // facing up
         this.animations[0][3] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48 * 5, 48, this.yHeight, 1, 0.2);
 
         // run animation (state = 1)
         // facing down
-        this.animations[1][0] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48 * 4, 48, this.yHeight, 3, .2);
+        this.animations[1][0] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48 * 4, 48, this.yHeight, 4, .15);
         // facing left
-        this.animations[1][1] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 0, 48, this.yHeight, 3, 0.2);
+        this.animations[1][1] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48*6, 48, this.yHeight, 4, 0.15);
         // facing right
-        this.animations[1][2] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48, 48, this.yHeight, 3, 0.2);
+        this.animations[1][2] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48*7, 48, this.yHeight, 4, 0.15);
         // facing up
-        this.animations[1][3] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48 * 5, 48, this.yHeight, 3, 0.2);
-
+        this.animations[1][3] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48 * 5, 48, this.yHeight, 4, 0.15);
+        // 8 direction
+         // facing down left
+         //this.animations[1][1] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 0, 48, this.yHeight, 4, 0.2);
+         // facing down right
+         //this.animations[1][2] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48, 48, this.yHeight, 4, 0.2);
+    
         //Death animation
         this.animations[2][0] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48 * 8, 48, this.yHeight, 2, 1);
         this.animations[2][1] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48 * 8, 48, this.yHeight, 2, 1);
