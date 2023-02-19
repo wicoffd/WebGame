@@ -76,7 +76,7 @@ class Entity {
             case "dog":
                 this.asset = "./doggy.png";
                 this.scale = .6;
-                this.maxSpeed = 70;
+                this.maxSpeed = (Math.random() * (75 - 65) + 65);
                 this.xBB = 15;
                 this.yBB = 20;
                 
@@ -85,7 +85,7 @@ class Entity {
             case "mouse":
                 this.asset = "./Mouse.png";
                 this.scale = .6;
-                this.maxSpeed = 60;
+                this.maxSpeed = (Math.random() * (70 - 60) + 60);
                 this.xBB = 20;
                 this.yBB = 33;
             break;
@@ -100,8 +100,8 @@ class Entity {
 
             case "cat":
                 this.asset = "./Cat.png";
-                this.scale = .50;
-                this.maxSpeed = 70;
+                this.scale = .5;
+                this.maxSpeed = (Math.random() * (75 - 65) + 65);
                 this.xBB = 15;
                 this.yBB = 20;
             break;
@@ -202,7 +202,7 @@ class Entity {
         var that = this;
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BB.collide(entity.BB)) {
-                if ((entity instanceof Wall || entity instanceof Item) && dist < 300){  
+                if ((entity instanceof Wall || entity instanceof Item) && dist < 250){  
                     //Vertical Collision
                     if (Math.round(that.BB.top) == entity.BB.bottom || Math.round(that.BB.top) == (entity.BB.bottom+1) || Math.round(that.BB.top) == (entity.BB.bottom-1)) { 
                         that.yPos -= that.velocity.up * that.game.clockTick;

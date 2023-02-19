@@ -198,7 +198,7 @@ class GameEngine {
                 this.entities[i].draw(this.ctx, this);
             }
         }
-        console.log("draw this.ctx");
+        //console.log("draw this.ctx");
         this.camera.draw(this.ctx);
     };
 

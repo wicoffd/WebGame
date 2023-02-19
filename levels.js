@@ -32,8 +32,9 @@ var levelOne = {
 
     ],
 
-    door:[
-        { x: 768, y: 640, width: 31, height: 10, direction: "north"}, //main room bottom wall
+    door:
+    [
+        { x: 768, y: 642, width: 31, height: 10, direction: "north"}, //main room bottom wall
     ],
 
     //items are all the objects in the rooms that are not near walls.
@@ -62,7 +63,7 @@ var levelOne = {
 
     entities:
     [
-        { color:"4", type: "cat", direction: "left", xPos: 170, yPos: 360, range: 100},
+        { color:"4", type: "cat", direction: "left", xPos: 170, yPos: 360, range: 150},
 
         //{ color:"4", type: "bear", direction: "left", xPos: 170, yPos: 350+48, range: 100},
         //{ color:"4", type: "chicken", direction: "left", xPos: 175, yPos: 350+48+48, range: 100},
@@ -73,7 +74,16 @@ var levelOne = {
         //{ color:"4", type: "raccoon", direction: "left", xPos: 200, yPos: 350+48+48+48+48+48+48, range: 100},  
 
         { color:"7", type: "dog", direction: "down", xPos: 740, yPos: 550, range: 150},
-        { color:"7", type: "mouse", direction: "down", xPos: 860, yPos: 310, range: 100}, 
-        { color:"1", type: "mouse", direction: "down", xPos: 908, yPos: 270, range: 100},
-    ]
+        { color:"1", type: "mouse", direction: "down", xPos: 860, yPos: 310, range: 100}, 
+        { color:"2", type: "mouse", direction: "down", xPos: 908, yPos: 275, range: 100},
+        { color:"3", type: "mouse", direction: "right", xPos: 1145, yPos: 285, range: 100},
+    ],
+
+    collectable:
+    [
+        //collectables for map completion
+        { x: 1164, y: 294, width: 32, height: 32}, //Kitchen collectable
+        { x: 94, y: 442, width: 32, height: 32}, //Bedroom collectable
+        { x: 745, y: 580, width: 32, height: 32}, //Living room collectable
+    ],
 };

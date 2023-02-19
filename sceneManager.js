@@ -51,6 +51,14 @@ class SceneManager {
                     entities.direction, entities.xPos, entities.yPos, entities.range));
             }
         }
+
+        if (this.level.collectable) {
+            for (var i = 0; i < this.level.collectable.length; i++) {
+                let collectable = this.level.collectable[i];
+                this.game.addEntity(new Collectable(gameEngine, collectable.x, collectable.y, collectable.width, collectable.height));
+            }
+        }
+
         this.game.addEntity(this.player);
         this.game.addEntity(new Stuff(this.game));
     };
