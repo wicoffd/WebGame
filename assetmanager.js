@@ -7,7 +7,7 @@ class AssetManager {
     };
 
     queueDownload(path) {
-        console.log("Queueing " + path);
+        //console.log("Queueing " + path);
         this.downloadQueue.push(path);
     };
 
@@ -21,16 +21,16 @@ class AssetManager {
             const img = new Image();
 
             const path = this.downloadQueue[i];
-            console.log(path);
+            //console.log(path);
 
             img.addEventListener("load", () => {
-                console.log("Loaded " + img.src);
+               // console.log("Loaded " + img.src);
                 this.successCount++;
                 if (this.isDone()) callback();
             });
 
             img.addEventListener("error", () => {
-                console.log("Error loading " + img.src);
+               // console.log("Error loading " + img.src);
                 this.errorCount++;
                 if (this.isDone()) callback();
             });

@@ -14,13 +14,14 @@ ASSET_MANAGER.queueDownload("./Raccoon.png")
 ASSET_MANAGER.queueDownload("./Sheep.png")
 ASSET_MANAGER.queueDownload("./Wolf.png")
 ASSET_MANAGER.queueDownload("./MapHouse.png")
+ASSET_MANAGER.queueDownload("./Collectable_Flashdrive.png")
 
 
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");
 	const ctx = canvas.getContext("2d");
 	gameEngine.init(ctx);
-
+    
 	new SceneManager(gameEngine);
 	gameEngine.start();
 });

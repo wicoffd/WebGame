@@ -21,7 +21,7 @@ class Animator {
             break;
 
             default:
-                console.log("set framecount failed");
+                //console.log("set framecount failed");
             break;
 
         }

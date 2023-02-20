@@ -10,7 +10,9 @@ class Player {
         this.game.alive = true; // when player is constructed set game.alive to true.
         this.state = 0; // 0 = idle, 1 = walking
         this.direction = direction; // 0 = down, 1 = left, 2 = right, 3 = up 
-
+        this.collectableCounter = 0;
+        this.collectableGoal = 3;
+        this.doorUnlocked = false;
         this.yDirectionPadding = 48 * 4;
         this.frameNumber = 1;
         this.updateBB();
@@ -34,9 +36,9 @@ class Player {
         // facing down
         this.animations[0][0] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48 * 4, 48, this.yHeight, 1, .2);
         // facing left
-        this.animations[0][1] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48*6, 48, this.yHeight, 1, 0.2);
+        this.animations[0][1] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48 * 6, 48, this.yHeight, 1, 0.2);
         // facing right
-        this.animations[0][2] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48*7, 48, this.yHeight, 1, 0.2);
+        this.animations[0][2] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48 * 7, 48, this.yHeight, 1, 0.2);
         // facing up
         this.animations[0][3] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48 * 5, 48, this.yHeight, 1, 0.2);
 
@@ -44,17 +46,17 @@ class Player {
         // facing down
         this.animations[1][0] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48 * 4, 48, this.yHeight, 4, .15);
         // facing left
-        this.animations[1][1] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48*6, 48, this.yHeight, 4, 0.15);
+        this.animations[1][1] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48 * 6, 48, this.yHeight, 4, 0.15);
         // facing right
-        this.animations[1][2] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48*7, 48, this.yHeight, 4, 0.15);
+        this.animations[1][2] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48 * 7, 48, this.yHeight, 4, 0.15);
         // facing up
         this.animations[1][3] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48 * 5, 48, this.yHeight, 4, 0.15);
         // 8 direction
-         // facing down left
-         //this.animations[1][1] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 0, 48, this.yHeight, 4, 0.2);
-         // facing down right
-         //this.animations[1][2] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48, 48, this.yHeight, 4, 0.2);
-    
+        // facing down left
+        //this.animations[1][1] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 0, 48, this.yHeight, 4, 0.2);
+        // facing down right
+        //this.animations[1][2] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48, 48, this.yHeight, 4, 0.2);
+
         //Death animation
         this.animations[2][0] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48 * 8, 48, this.yHeight, 2, 1);
         this.animations[2][1] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48 * 8, 48, this.yHeight, 2, 1);
@@ -129,7 +131,7 @@ class Player {
         var that = this;
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BB.collide(entity.BB)) {
-                if (entity instanceof Wall || entity instanceof Item) {
+                if (entity instanceof Wall || entity instanceof Item || (entity instanceof Door && that.collectableCounter != that.collectableGoal)) {
                     //Vertical Collision
                     if (Math.round(that.BB.top) == entity.BB.bottom || Math.round(that.BB.top) == (entity.BB.bottom + 1) || Math.round(that.BB.top) == (entity.BB.bottom - 1)) {
                         that.velocity.up -= MIN_WALK;
@@ -154,15 +156,25 @@ class Player {
                             that.updateBB();
                         }
                 }
-                if (entity instanceof Door) {
+                //If all the collectables are found in a map, the door is available
+                if (entity instanceof Door && that.collectableCounter >= that.collectableGoal) {
                     if (Math.round(that.BB.bottom) == entity.BB.top || Math.round(that.BB.bottom) == (entity.BB.top - 1) || Math.round(that.BB.bottom) == (entity.BB.top + 1)) {
-                        console.log("door found");
+                        //console.log("door found");
+                        that.doorUnlocked = true;
+
                     }
                 }
-
+                //If any enemy is hit, the player dies
                 if (entity instanceof Entity) {
                     that.state = 2;
                     that.die();
+                }
+                //If a collectable is hit by the player, the collectable is removed from the world and added to the players collectable count
+                if (entity instanceof Collectable) {
+                    //console.log("item found");
+                    that.collectableCounter += 1;
+                    entity.removeFromWorld = true;
+                    //console.log(that.collectableCounter);
                 }
             }
         });
@@ -171,7 +183,7 @@ class Player {
         if (this.game.alive == true) {
             // movement controller
 
-            if (Math.abs(this.velocity.left) < MIN_WALK || Math.abs(this.velocity.right) < MIN_WALK) { 
+            if (Math.abs(this.velocity.left) < MIN_WALK || Math.abs(this.velocity.right) < MIN_WALK) {
                 this.state = 0;
                 if (this.game.left) {
                     if (this.direction != "left") {
@@ -226,7 +238,6 @@ class Player {
         // console.log("player's x = ", this.xPos);
         // console.log("player's y = ", this.yPos);
 
-
         var directionInt;
 
         switch (this.direction) {
@@ -245,6 +256,14 @@ class Player {
         }
         this.animations[this.state][directionInt].drawFrame(this.game.clockTick, ctx,
             this.xPos - this.game.camera.x, this.yPos - this.game.camera.y, 1);
+
+        if (this.doorUnlocked) {
+            
+            if(this.game.credits!=true){
+                this.game.credits = true;
+            }
+        }
+
     }
 
 }
