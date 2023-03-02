@@ -10,7 +10,8 @@ class Player {
         this.game.alive = true; // when player is constructed set game.alive to true.
         this.state = 0; // 0 = idle, 1 = walking
         this.direction = direction; // 0 = down, 1 = left, 2 = right, 3 = up 
-        this.collectableCounter = 0;
+        this.collectableCounter = 3;
+        this.powerUp = new Map();// using map data structure
         this.collectableGoal = 3;
         this.doorUnlocked = false;
         this.yDirectionPadding = 48 * 4;
@@ -131,7 +132,7 @@ class Player {
         var that = this;
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BB.collide(entity.BB)) {
-                if (entity instanceof Wall || entity instanceof Item || (entity instanceof Door && that.collectableCounter != that.collectableGoal)) {
+                if (entity instanceof Wall || entity instanceof Item) {
                     //Vertical Collision
                     if (Math.round(that.BB.top) == entity.BB.bottom || Math.round(that.BB.top) == (entity.BB.bottom + 1) || Math.round(that.BB.top) == (entity.BB.bottom - 1)) {
                         that.velocity.up -= MIN_WALK;
@@ -156,11 +157,21 @@ class Player {
                             that.updateBB();
                         }
                 }
-                //If all the collectables are found in a map, the door is available
-                if (entity instanceof Door && that.collectableCounter >= that.collectableGoal) {
+                // If all the collectables are found in a map, the door is available
+                if (entity instanceof Door && that.collectableCounter >= that.collectableGoal && entity.destination == "credits") {
+                    // check if door.destination = "credits"
                     if (Math.round(that.BB.bottom) == entity.BB.top || Math.round(that.BB.bottom) == (entity.BB.top - 1) || Math.round(that.BB.bottom) == (entity.BB.top + 1)) {
-                        //console.log("door found");
                         that.doorUnlocked = true;
+                    }
+                }
+                else if (entity instanceof Door && entity.destination == "levelTwo") {
+                    if (Math.round(that.BB.bottom) == entity.BB.top || Math.round(that.BB.bottom) == (entity.BB.top - 1) || Math.round(that.BB.bottom) == (entity.BB.top + 1)) {
+                    // that.game.camera.loadLevel(levelTwo,x,y);
+                    }
+                }
+                else if (entity instanceof Door && entity.destination == "levelThree") {
+                    if (Math.round(that.BB.bottom) == entity.BB.top || Math.round(that.BB.bottom) == (entity.BB.top - 1) || Math.round(that.BB.bottom) == (entity.BB.top + 1)) {
+                        that.game.camera.loadLevel(levelThree, -310,-70)
 
                     }
                 }
@@ -170,12 +181,7 @@ class Player {
                     that.die();
                 }
                 //If a collectable is hit by the player, the collectable is removed from the world and added to the players collectable count
-                if (entity instanceof Collectable) {
-                    //console.log("item found");
-                    that.collectableCounter += 1;
-                    entity.removeFromWorld = true;
-                    //console.log(that.collectableCounter);
-                }
+                that.itemCollision(entity, that);
             }
         });
 
@@ -230,6 +236,24 @@ class Player {
 
     };
 
+    itemCollision(entity, that) {
+        if (entity instanceof Collectable) {
+            //console.log("item found");
+            that.collectableCounter += 1;
+            entity.removeFromWorld = true;
+            //console.log(that.collectableCounter);
+        }
+        if (entity instanceof PowerUp) {
+            // if entity.has(type){}
+            that.powerUp.set(entity.type,1);
+            //else{}
+           // that.powerUp.set(entity.type,1);
+            entity.removeFromWorld = true;
+
+            console.log(that.powerUp.has(entity.type) + " " + entity.type +" " +  this.powerUp.get(entity.type) + " number of powerupsss");
+        }
+    }
+
     draw(ctx) {
 
 
@@ -260,6 +284,7 @@ class Player {
         if (this.doorUnlocked) {
             
             if(this.game.credits!=true){
+                
                 this.game.credits = true;
             }
         }

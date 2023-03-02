@@ -34,7 +34,7 @@ var levelOne = {
 
     door:
     [
-        { x: 768, y: 642, width: 31, height: 10, direction: "north"}, //main room bottom wall
+        { x: 768, y: 642, width: 31, height: 10, direction: "north", destination: "levelThree"}, //main room bottom wall // change to levelTwo
     ],
 
     //items are all the objects in the rooms that are not near walls.
@@ -73,7 +73,7 @@ var levelOne = {
         //{ color:"4", type: "goose", direction: "left", xPos: 190, yPos: 350+48+48+48+48+48, range: 100},
         //{ color:"4", type: "raccoon", direction: "left", xPos: 200, yPos: 350+48+48+48+48+48+48, range: 100},  
 
-        { color:"7", type: "dog", direction: "down", xPos: 740, yPos: 550, range: 100},
+        //{ color:"7", type: "dog", direction: "down", xPos: 740, yPos: 550, range: 100},
         { color:"2", type: "mouse", direction: "down", xPos: 860, yPos: 310, range: 120}, // near trash can
         { color:"7", type: "mouse", direction: "left", xPos: 908, yPos: 275, range: 100}, // white near counter 
         { color:"4", type: "mouse", direction: "right", xPos: 1145, yPos: 285, range: 80}, // near fridge
@@ -86,4 +86,19 @@ var levelOne = {
         { x: 94, y: 442, width: 32, height: 32}, //Bedroom collectable
         { x: 745, y: 580, width: 32, height: 32}, //Living room collectable
     ],
+    
+    powerUp:
+    [
+        { x: 600, y: 404, width: 32, height: 32, type: "freeze"},
+    ],
+
 };
+var levelThree = {
+    wall:[],
+    door:[],
+    item:[],
+    entities:[],
+    collectable:[],
+    powerUp:[], 
+    
+}

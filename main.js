@@ -14,7 +14,10 @@ ASSET_MANAGER.queueDownload("./Raccoon.png")
 ASSET_MANAGER.queueDownload("./Sheep.png")
 ASSET_MANAGER.queueDownload("./Wolf.png")
 ASSET_MANAGER.queueDownload("./MapHouse.png")
+ASSET_MANAGER.queueDownload("./MapFarm.png")
+//ASSET_MANAGER.queueDownload("./testmap-exterior.png")
 ASSET_MANAGER.queueDownload("./Collectable_Flashdrive.png")
+
 
 
 ASSET_MANAGER.downloadAll(() => {
