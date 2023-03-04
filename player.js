@@ -176,6 +176,12 @@ class Player {
 
                     }
                 }
+                else if (entity instanceof Door && entity.destination == "levelFour") {
+                    if (Math.round(that.BB.right) == entity.BB.left || Math.round(that.BB.right) == (entity.BB.left - 1) || Math.round(that.BB.right) == (entity.BB.left + 1)) {
+                        that.game.camera.loadLevel(levelFour, -80,-70)
+
+                    }
+                }
                 //If any enemy is hit, the player dies
                 if (entity instanceof Entity) {
                     that.state = 2;

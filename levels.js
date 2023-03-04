@@ -95,10 +95,25 @@ var levelOne = {
 };
 var levelThree = {
     wall:[],
-    door:[],
+    door:[
+        { x: 400, y: 400, width: 10, height: 31, direction: "west", destination: "levelFour"}, //main room bottom wall // change to levelTwo
+
+    ],
     item:[],
     entities:[
         { color:"4", type: "cat", direction: "left", xPos: 300, yPos: 300, range: 150},
+
+    ],
+    collectable:[],
+    powerUp:[], 
+    
+};
+var levelFour = {
+    wall:[],
+    door:[],
+    item:[],
+    entities:[
+        //{ color:"4", type: "cat", direction: "left", xPos: 300, yPos: 300, range: 150},
 
     ],
     collectable:[],

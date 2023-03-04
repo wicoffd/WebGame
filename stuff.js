@@ -14,6 +14,11 @@ class Stuff {
             case levelThree:
                 this.map = ASSET_MANAGER.getAsset("./MapFarm.png");
             break;
+            case levelFour:
+                this.width = 640;
+                this.height = 1280;
+                this.map = ASSET_MANAGER.getAsset("./MapForest.png");
+            break;
             default:
                 //console.log(this.map);
                 console.log("default error");
