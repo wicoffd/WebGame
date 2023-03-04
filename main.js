@@ -16,8 +16,8 @@ ASSET_MANAGER.queueDownload("./Wolf.png")
 ASSET_MANAGER.queueDownload("./MapHouse.png")
 ASSET_MANAGER.queueDownload("./MapFarm.png")
 //ASSET_MANAGER.queueDownload("./testmap-exterior.png")
-ASSET_MANAGER.queueDownload("./Collectable_Flashdrive.png")
-
+ASSET_MANAGER.queueDownload("./Collectables.png")
+ASSET_MANAGER.queueDownload("./Powerups.png")
 
 
 ASSET_MANAGER.downloadAll(() => {

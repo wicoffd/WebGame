@@ -1,12 +1,13 @@
 class Collectable {
-    constructor(game, xPos, yPos, width, height) {
+    constructor(game, xPos, yPos, width, height, number) {
         this.xPos = xPos;
         this.yPos = yPos;
         this.width = width;
         this.height = height;
+        this.number = number; // number is zero indexed for spritesheet items
         this.game = game;
         this.updateBB();
-        this.animator = new Animator(ASSET_MANAGER.getAsset("./Collectable_Flashdrive.png"), 0, 0, 32, 32, 1, 1);
+        this.animator = new Animator(ASSET_MANAGER.getAsset("./Collectables.png"), 0 + number*32, 0, 32, 32, 1, 1);
     };
 
     updateBB() {

@@ -1,17 +1,18 @@
 class Player {
-    constructor(game, type, direction, xPos, yPos) {
+    constructor(game, inventory, type, direction, xPos, yPos) {
         this.type = type;
         this.xPos = xPos;
         this.yPos = yPos;
         this.game = game;
+        this.inventory = inventory;
         this.yColorPadding = 0;
         this.xColorPadding = 0;
         this.yHeight = 48;
         this.game.alive = true; // when player is constructed set game.alive to true.
         this.state = 0; // 0 = idle, 1 = walking
         this.direction = direction; // 0 = down, 1 = left, 2 = right, 3 = up 
-        this.collectableCounter = 3;
-        this.powerUp = new Map();// using map data structure
+        this.collectableCounter = 0;
+        
         this.collectableGoal = 3;
         this.doorUnlocked = false;
         this.yDirectionPadding = 48 * 4;
@@ -245,12 +246,16 @@ class Player {
         }
         if (entity instanceof PowerUp) {
             // if entity.has(type){}
-            that.powerUp.set(entity.type,1);
+            if(this.inventory.powerUp.has(entity.type)){
+            this.inventory.powerUp.set(entity.type, this.inventory.powerUp.get(entity.type)+1);
+            }else{
+                this.inventory.powerUp.set(entity.type, 1);
+            }
+            //that.powerUp.set(entity.type, this.powerUp.get(entity.type)+1); // something like this
             //else{}
-           // that.powerUp.set(entity.type,1);
             entity.removeFromWorld = true;
 
-            console.log(that.powerUp.has(entity.type) + " " + entity.type +" " +  this.powerUp.get(entity.type) + " number of powerupsss");
+            //console.log(that.powerUp.has(entity.type) + " " + entity.type +" " +  this.powerUp.get(entity.type) + " number of powerups");
         }
     }
 

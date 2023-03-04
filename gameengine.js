@@ -110,6 +110,7 @@ class GameEngine {
                 case "Numpad1":
                     that.use = true;
                     break;
+                    
             }
         }
         function keyUpListener(e) {
@@ -203,7 +204,7 @@ class GameEngine {
         this.ctx.canvas.addEventListener("keydown", that.keydown, false);
 
         this.ctx.canvas.addEventListener("keyup", that.keyup, false);
-        this.ctx.canvas.addEventListener("enter", that.keyup, false); // might not be needed
+        //this.ctx.canvas.addEventListener("enter", that.keyup, false); // might not be needed
         
     };
 

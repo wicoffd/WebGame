@@ -82,14 +82,14 @@ var levelOne = {
     collectable:
     [
         //collectables for map completion
-        { x: 1164, y: 294, width: 32, height: 32}, //Kitchen collectable
-        { x: 94, y: 442, width: 32, height: 32}, //Bedroom collectable
-        { x: 745, y: 580, width: 32, height: 32}, //Living room collectable
+        { x: 1164, y: 294, width: 32, height: 32, number: 7}, //Kitchen collectable
+        { x: 94, y: 442, width: 32, height: 32, number: 4}, //Bedroom collectable
+        { x: 745, y: 580, width: 32, height: 32, number: 0}, //Living room collectable
     ],
     
     powerUp:
     [
-        { x: 600, y: 404, width: 32, height: 32, type: "freeze"},
+        { x: 600, y: 404, width: 32, height: 32, type: "freeze", number: 2},
     ],
 
 };
@@ -97,8 +97,14 @@ var levelThree = {
     wall:[],
     door:[],
     item:[],
-    entities:[],
+    entities:[
+        { color:"4", type: "cat", direction: "left", xPos: 300, yPos: 300, range: 150},
+
+    ],
     collectable:[],
     powerUp:[], 
     
+};
+var deaths = {
+    death:[{count:0}],
 }
