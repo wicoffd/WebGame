@@ -23,7 +23,9 @@ class GameEngine {
         this.B = false;
         this.enter = false;
         this.credits = false;
-
+        this.E = false;
+        this.Q = false;
+        this.use = false;
         // Options and the Details
         this.options = options || {
             debugging: false,
@@ -57,7 +59,7 @@ class GameEngine {
         }
         function mouseClickListener(e) {
             that.click = getXandY(e);
-            //if (PARAMS.DEBUG) console.log(that.click);
+            if (true) console.log(that.click);
         }
         function wheelListener(e) {
             e.preventDefault(); // Prevent Scrolling
@@ -96,6 +98,19 @@ class GameEngine {
                 case "Enter":
                     that.enter = true;
                     break;
+                case "KeyQ":
+                case "Slash":
+                    that.Q = true;
+                    break;
+                case "KeyE":
+                case "ShiftRight":
+                    that.E = true;
+                    break;
+                case "KeyR":
+                case "Numpad1":
+                    that.use = true;
+                    break;
+                    
             }
         }
         function keyUpListener(e) {
@@ -129,6 +144,18 @@ class GameEngine {
                     break;
                 case "Enter":
                     that.enter = false;
+                    break;
+                case "KeyQ":
+                case "Slash":
+                    that.Q = false;
+                    break;
+                case "KeyE":
+                case "ShiftRight":
+                    that.E = false;
+                    break;
+                case "KeyR":
+                case "Numpad1":
+                    that.use = false;
                     break;
             }
         }
@@ -177,8 +204,8 @@ class GameEngine {
         this.ctx.canvas.addEventListener("keydown", that.keydown, false);
 
         this.ctx.canvas.addEventListener("keyup", that.keyup, false);
-        this.ctx.canvas.addEventListener("enter", that.keyup, false);
-
+        //this.ctx.canvas.addEventListener("enter", that.keyup, false); // might not be needed
+        
     };
 
     addEntity(entity) {
@@ -231,4 +258,4 @@ class GameEngine {
 
 };
 
-// KV Le was here :)    
+  

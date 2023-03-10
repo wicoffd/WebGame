@@ -1,13 +1,14 @@
-class Collectable {
-    constructor(game, xPos, yPos, width, height, number) {
+class PowerUp {
+    constructor(game, xPos, yPos, width, height, type, number) {
         this.xPos = xPos;
         this.yPos = yPos;
         this.width = width;
         this.height = height;
-        this.number = number; // number is zero indexed for spritesheet items
         this.game = game;
+        this.type = type;
+        this.number = number;
         this.updateBB();
-        this.animator = new Animator(ASSET_MANAGER.getAsset("./Collectables.png"), 0 + number*32, 0, 32, 32, 1, 1);
+        this.animator = new Animator(ASSET_MANAGER.getAsset("./Powerups.png"), 0 + number*32, 0, 32, 32, 1, 1);
     };
 
     updateBB() {
@@ -18,7 +19,7 @@ class Collectable {
     };
 
     draw(ctx) {
-        const scale = 0.5;
+        const scale = .5;
         this.animator.drawFrame(this.game.clockTick, ctx,
             this.xPos - this.game.camera.x,
             this.yPos - this.game.camera.y,

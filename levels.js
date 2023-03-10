@@ -34,7 +34,7 @@ var levelOne = {
 
     door:
     [
-        { x: 768, y: 642, width: 31, height: 10, direction: "north"}, //main room bottom wall
+        { x: 768, y: 642, width: 31, height: 10, direction: "north", destination: "levelThree"}, //main room bottom wall // change to levelTwo
     ],
 
     //items are all the objects in the rooms that are not near walls.
@@ -73,7 +73,7 @@ var levelOne = {
         //{ color:"4", type: "goose", direction: "left", xPos: 190, yPos: 350+48+48+48+48+48, range: 100},
         //{ color:"4", type: "raccoon", direction: "left", xPos: 200, yPos: 350+48+48+48+48+48+48, range: 100},  
 
-        { color:"7", type: "dog", direction: "down", xPos: 740, yPos: 550, range: 100},
+        //{ color:"7", type: "dog", direction: "down", xPos: 740, yPos: 550, range: 100},
         { color:"2", type: "mouse", direction: "down", xPos: 860, yPos: 310, range: 120}, // near trash can
         { color:"7", type: "mouse", direction: "left", xPos: 908, yPos: 275, range: 100}, // white near counter 
         { color:"4", type: "mouse", direction: "right", xPos: 1145, yPos: 285, range: 80}, // near fridge
@@ -82,8 +82,109 @@ var levelOne = {
     collectable:
     [
         //collectables for map completion
-        { x: 1164, y: 294, width: 32, height: 32}, //Kitchen collectable
-        { x: 94, y: 442, width: 32, height: 32}, //Bedroom collectable
-        { x: 745, y: 580, width: 32, height: 32}, //Living room collectable
+        { x: 1164, y: 294, width: 32, height: 32, number: 7}, //Kitchen collectable
+        { x: 94, y: 442, width: 32, height: 32, number: 4}, //Bedroom collectable
+        { x: 745, y: 580, width: 32, height: 32, number: 0}, //Living room collectable
     ],
+    
+    powerUp:
+    [
+        { x: 600, y: 404, width: 32, height: 32, type: "freeze", number: 2},
+    ],
+
 };
+var levelThree = {
+    wall:[
+                //Main borders
+                { x: 0, y: 467, width: 670, height: 160}, //Southern tree farm wall
+                { x: 658, y:  623, width: 188, height: 30}, //Southern bush wall
+                { x: 788, y:  467, width: 492, height: 55}, //Southern forest wall
+                { x: 0, y:  258, width: 546, height: 64}, //Wall south of orange forest
+                { x: 270, y:  90, width: 324, height: 54}, //Wall south of apple forest
+                { x: 280, y:  132, width: 54, height: 132}, //Wall west of apple forest
+                { x: 520, y:  224, width: 25, height: 40}, //Wall south corner below apple forest
+                { x: 520, y:  135, width: 25, height: 40}, //Wall north corner below apple forest
+        
+                //House borders
+                { x: 584, y:  102, width: 96, height: 30}, //Wall west of house
+                { x: 656, y:  110, width: 38, height: 130}, //Wall west of house 2
+                { x: 656, y:  290, width: 624, height: 28}, //Wall south of house 
+                { x: 1106, y:  122, width: 34, height: 170}, //Wall west of house near forest
+                { x: 988, y:  132, width: 144, height: 28}, //Wall west of house near forest - north
+                { x: 680, y:  176, width: 146, height: 62}, //Bushes by house west side
+                { x: 866, y:  130, width: 30, height: 106}, //Bushes by house east side
+                { x: 884, y:  152, width: 126, height: 72}, //House east side
+                { x: 804, y:  164, width: 72, height: 48}, //House door
+        
+                //Sheep pasture
+                { x: 834, y:  639, width: 272, height: 22}, //Southern wall
+                { x: 834, y:  506, width: 272, height: 22}, //Northern wall
+                { x: 1092, y:  513, width: 15, height: 147}, //East wall
+                { x: 789, y:  513, width: 56, height: 63}, //West wall
+        
+                //Map borders
+                { x: 0, y:  284, width: 168, height: 216}, //west path
+                { x: 1120, y:  292, width: 160, height: 208}, //east path
+    ],
+    door:[
+        { x: 400, y: 400, width: 10, height: 31, direction: "west", destination: "levelFour"}, //main room bottom wall // change to levelTwo
+
+    ],
+    item:[],
+    entities:[
+        //Chickens
+        { color:"1", type: "chicken", direction: "down", xPos: 1010, yPos: 198, range: 00},
+        { color:"3", type: "chicken", direction: "left", xPos: 1076, yPos: 260, range: 00},
+        //{ color:"1", type: "chicken", direction: "down", xPos: 612, yPos: 150, range: 00},
+        { color:"8", type: "chicken", direction: "down", xPos: 755, yPos: 325, range: 00},
+        { color:"7", type: "chicken", direction: "right", xPos: 270, yPos: 325, range: 100},//280x 445y
+        { color:"1", type: "chicken", direction: "right", xPos: 280, yPos: 375, range: 100},
+        { color:"3", type: "chicken", direction: "right", xPos: 265, yPos: 425, range: 100},
+        { color:"2", type: "chicken", direction: "down", xPos: 1025, yPos: 442, range: 0},
+
+        //Sheep
+        { color:"1", type: "sheep", direction: "down", xPos: 900, yPos: 550, range: 00},
+        { color:"1", type: "sheep", direction: "right", xPos: 1050, yPos: 530, range: 0},
+        { color:"3", type: "sheep", direction: "left", xPos: 850, yPos: 600, range: 0},
+
+        //Pigs
+        { color:"5", type: "pig", direction: "left", xPos: 340, yPos: 210, range: 80}, //far left
+        { color:"8", type: "pig", direction: "down", xPos: 380, yPos: 130, range: 80}, //middle 380x, 150y
+        { color:"7", type: "pig", direction: "right", xPos: 450, yPos: 210, range: 60}, //far right
+    ],
+    collectable:[],
+    powerUp:[
+        { x: 400, y: 400, width: 32, height: 32, type: "freeze", number: 0},
+
+    ], 
+    
+};
+var levelFour = { // forest level
+    wall:[],
+    door:[
+        { x: 400, y: 400, width: 1000, height: 1100, direction: "south", destination: "levelFive"}, //at the observatory door // change to levelFive
+    ],
+    item:[],
+    entities:[
+        //{ color:"4", type: "cat", direction: "left", xPos: 300, yPos: 300, range: 150},
+
+    ],
+    collectable:[],
+    powerUp:[
+
+    ], 
+    
+};
+var levelFive = { // final level
+    wall:[],
+    door:[
+        { x: 400, y: 400, width: 10, height: 31, direction: "south", destination: "credits"}, //at computer station // change to credits
+    ],
+    item:[],
+    entities:[],
+    collectable:[],
+    powerUp:[], 
+}
+var deaths = {
+    death:[{count:0}],
+}
