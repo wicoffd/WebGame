@@ -264,11 +264,11 @@ class Player {
         }
         if (entity instanceof PowerUp) {
             // if entity.has(type){}
-            if(this.inventory.hasPowerUp(entity.number)){
-            this.inventory.setPowerUp(entity.number);
+            if(this.inventory.hasPowerUp(entity.type)){
+            this.inventory.setPowerUp(entity.type);
             //this.inventory.powerUp.set(entity.type, this.inventory.powerUp.get(entity.type)+1);
             }else{
-                this.inventory.setPowerUp(entity.number);
+                this.inventory.setPowerUp(entity.type);
                 //this.inventory.powerUp.set(entity.type, 1);
             }
             //that.powerUp.set(entity.type, this.powerUp.get(entity.type)+1); // something like this

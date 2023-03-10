@@ -16,12 +16,13 @@ class SceneManager {
         // this.midpoint_x = this.game.ctx.canvas.width / 2;
         //this.midpoint_y = this.game.ctx.canvas.height / 2;
         //this.player = new Player(this.game,"1","down",this.midpoint_x, this.midpoint_y);
-        this.inventory = new InventoryManager();
+        //this.inventory = new InventoryManager(gameEngine);
         console.log("scenemanager constructed")
         this.loadLevel(levelOne, 0, 0);
     };
 
     loadLevel(levelname, x, y) { // add varaible for level name
+
 
         this.clearEntities();
         this.playerOffsetX = x;
@@ -29,6 +30,7 @@ class SceneManager {
         this.level = eval(levelname);
         this.midpoint_x = this.game.ctx.canvas.width / 2;
         this.midpoint_y = this.game.ctx.canvas.height / 2;
+        this.inventory = new InventoryManager(gameEngine, this.midpoint_x, this.midpoint_y);
         this.player = new Player(this.game, this.inventory, "1", "down", this.midpoint_x + this.playerOffsetX, this.midpoint_y + this.playerOffsetY);
         console.log(this.level);
         if (this.level.wall) {
@@ -73,7 +75,7 @@ class SceneManager {
                 this.game.addEntity(new PowerUp(gameEngine, powerUp.x, powerUp.y, powerUp.width, powerUp.height, powerUp.type, powerUp.number));
             }
         }
-
+        this.game.addEntity(this.inventory);
         this.game.addEntity(this.player);
         this.game.addEntity(new Stuff(this.game, this.level));
     };
