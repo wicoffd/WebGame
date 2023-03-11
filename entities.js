@@ -204,7 +204,7 @@ class Entity {
 
         var that = this;
         this.game.entities.forEach(function (entity) {
-            if (entity.BB && that.BB.collide(entity.BB)) {
+            if (entity.BB && that.BB.collide(entity.BB) && (that.game.powerUpUsed=="null")) {
                 if ((entity instanceof Wall || entity instanceof Item) && dist < 250){  
                     //Vertical Collision
                     if (Math.round(that.BB.top) == entity.BB.bottom || Math.round(that.BB.top) == (entity.BB.bottom+1) || Math.round(that.BB.top) == (entity.BB.bottom-1)) { 

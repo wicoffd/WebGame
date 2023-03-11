@@ -31,6 +31,9 @@ class GameEngine {
         this.options = options || {
             debugging: false,
         };
+        // global variables
+        this.lastMap = new Map();
+        this.powerUpUsed = "null";
     };
 
     init(ctx) {
@@ -102,22 +105,34 @@ class GameEngine {
                 case "KeyQ":
                 case "Slash":
                     //setTimeout(function(){
-                    that.invPos -=1;
-                    //},1000);
-                    that.Q = true;
+                    switch (that.alive) {
+                        case true:
+                            that.invPos -= 1;
+                            //},1000);
+                            that.Q = true;
+                            break;
+                        default:
+                            break;
+                    }
                     break;
                 case "KeyE":
                 case "ShiftRight":
                     //setTimeout(function(){
-                        that.invPos +=1;
-                    //    },1000);
-                    that.E = true;
+                    switch (that.alive) {
+                        case true:
+                            that.invPos += 1;
+                            //    },1000);
+                            that.E = true;
+                            break;
+                        default:
+                            break;
+                    }
                     break;
                 case "KeyR":
                 case "Numpad1":
                     that.use = true;
                     break;
-                    
+
             }
         }
         function keyUpListener(e) {
@@ -212,7 +227,7 @@ class GameEngine {
 
         this.ctx.canvas.addEventListener("keyup", that.keyup, false);
         //this.ctx.canvas.addEventListener("enter", that.keyup, false); // might not be needed
-        
+
     };
 
     addEntity(entity) {
@@ -265,4 +280,3 @@ class GameEngine {
 
 };
 
-  
