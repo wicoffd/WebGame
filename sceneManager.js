@@ -9,35 +9,29 @@ class SceneManager {
         this.playerOffsetY = 0;
         this.deaths = 0;
         //this.level = levelOne;
-        // /*old*/this.game.ctx.transform(2, 0, 0, 2, -512, -384);
+        //this.game.ctx.transform(2, 0, 0, 2, -512, -384);
         this.game.ctx.transform(3, 0, 0, 3, -1024 - 72, -768 - 96);
         this.flag = false;
         // spawn player in middle
         // this.midpoint_x = this.game.ctx.canvas.width / 2;
         //this.midpoint_y = this.game.ctx.canvas.height / 2;
         //this.player = new Player(this.game,"1","down",this.midpoint_x, this.midpoint_y);
-        //this.inventory = new InventoryManager(gameEngine);
+        this.inventory = new InventoryManager();
         console.log("scenemanager constructed")
-        this.midpoint_x = this.game.ctx.canvas.width / 2;// moved from load level
-        this.midpoint_y = this.game.ctx.canvas.height / 2;// moved from load level
         this.loadLevel(levelOne, 0, 0);
     };
 
     loadLevel(levelname, x, y) { // add varaible for level name
-        if (this.inventory == null) { // if this is the first time running
-            this.clearEntities();
-            this.inventory = new InventoryManager(gameEngine, this.midpoint_x, this.midpoint_y);
-        } else { // player died or moved maps
-            this.inventory = new InventoryManager(gameEngine, this.midpoint_x, this.midpoint_y); // needed  to allow for an inventory to be made on death and map transition
-            this.clearEntities();
-            this.inventory.resetPowerUpMap();
-        }
 
+        this.clearEntities();
         this.playerOffsetX = x;
         this.playerOffsetY = y;
         this.level = eval(levelname);
-
+        this.midpoint_x = this.game.ctx.canvas.width / 2;
+        this.midpoint_y = this.game.ctx.canvas.height / 2;
         this.player = new Player(this.game, this.inventory, "1", "down", this.midpoint_x + this.playerOffsetX, this.midpoint_y + this.playerOffsetY);
+        //this.inventory = new InventoryManager();
+        this.game.addEntity(new InventoryManager(gameEngine, this.midpoint_x, this.midpoint_y));
         console.log(this.level);
         if (this.level.wall) {
             for (var i = 0; i < this.level.wall.length; i++) {
@@ -81,7 +75,7 @@ class SceneManager {
                 this.game.addEntity(new PowerUp(gameEngine, powerUp.x, powerUp.y, powerUp.width, powerUp.height, powerUp.type, powerUp.number));
             }
         }
-        this.game.addEntity(this.inventory);
+
         this.game.addEntity(this.player);
         this.game.addEntity(new Stuff(this.game, this.level));
     };
@@ -103,7 +97,7 @@ class SceneManager {
             ////this.inventory.savePowerUpMap();
             this.clearEntities();
             this.game.alive = true;
-            this.loadLevel(this.level, 0, 0);
+            this.loadLevel(this.level,0,0);
         }
         if (this.game.credits) {// logic for credits 
             //if(!this.entities[0] instanceof Player){
@@ -148,7 +142,7 @@ class SceneManager {
 
             this.game.ctx.fillText("Congratulations You Win!", (this.midpoint_x - 48 * 1.5), (this.midpoint_y - 48));
             this.game.ctx.fillStyle = "white";
-
+            
             this.game.ctx.font = "48px Russo-Regular"
             this.game.ctx.fillText("Credits", (this.midpoint_x - 48), (this.midpoint_y));
             this.game.ctx.font = "18px Russo-Regular"
@@ -160,20 +154,20 @@ class SceneManager {
         } else if (this.game.alive) {
             // Collectibles Counter
             this.game.ctx.font = "14px Russo-Regular";
-            this.game.ctx.fillText('Collectibles: ' + this.player.collectableCounter + "/" + this.level.collectable.length, (this.midpoint_x - 140), (this.midpoint_y - 80));
+            this.game.ctx.fillText('Collectibles: ' + this.player.collectableCounter+"/" + this.level.collectable.length, (this.midpoint_x - 140), (this.midpoint_y - 80));
             this.game.ctx.strokeStyle = 'black';
             this.game.ctx.lineWidth = .3;
-            this.game.ctx.strokeText('Collectibles: ' + this.player.collectableCounter + "/" + this.level.collectable.length, (this.midpoint_x - 140), (this.midpoint_y - 80));
+            this.game.ctx.strokeText('Collectibles: ' + this.player.collectableCounter+"/" + this.level.collectable.length, (this.midpoint_x -140), (this.midpoint_y - 80));
             this.game.ctx.strokeStyle = 'white';
-
+           
 
             // Death Counter
             this.game.ctx.fillStyle = "white";
             this.game.ctx.font = "10px Russo-Regular";
-            this.game.ctx.fillText('Deaths:' + this.deaths, (this.midpoint_x + 155), (this.midpoint_y - 82));
+            this.game.ctx.fillText('Deaths:'+ this.deaths, (this.midpoint_x + 155), (this.midpoint_y - 82));
             this.game.ctx.strokeStyle = 'black';
             this.game.ctx.lineWidth = .23;
-            this.game.ctx.strokeText('Deaths:' + this.deaths, (this.midpoint_x + 155), (this.midpoint_y - 82));
+            this.game.ctx.strokeText('Deaths:'+ this.deaths, (this.midpoint_x + 155), (this.midpoint_y - 82));
             this.game.ctx.strokeStyle = 'white';
 
             // Item Frames
