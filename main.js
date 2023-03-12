@@ -22,6 +22,8 @@ ASSET_MANAGER.queueDownload("./MapForest.png")
 ASSET_MANAGER.queueDownload("./Collectables.png")
 ASSET_MANAGER.queueDownload("./Powerups.png")
 
+// audio
+ASSET_MANAGER.queueDownload("./you_died.mp3")
 
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");

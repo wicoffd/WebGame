@@ -105,7 +105,7 @@ class SceneManager {
             this.game.alive = true;
             this.loadLevel(this.level, 0, 0);
         }
-        if (this.game.credits) {// logic for credits 
+        if (this.game.credits) {// logic for credits
             //if(!this.entities[0] instanceof Player){
             if (!this.flag) {
                 //console.log("entities cleared")
@@ -128,17 +128,16 @@ class SceneManager {
     // call loadlevel
     draw() {
         if (this.game.alive == false) {
+            //this.game.audio = new Audio('you_died.mp3');
+            //this.game.audio.play();
             //console.log("death message");
             this.game.ctx.fillStyle = "red";
-            //this.game.audio = new Audio('you_died.mp3');    
-            //this.game.audio.play();
             //this.game.ctx.color = "red"
             this.game.ctx.font = "48px Russo-Regular"
             this.game.ctx.fillText("You Died", (this.midpoint_x - 48), (this.midpoint_y));
             this.game.ctx.color = "red"
             this.game.ctx.font = "28px Russo-Regular"
             this.game.ctx.fillText("Press Enter to Restart", (this.midpoint_x - 48 * 1.5), (this.midpoint_y + 48));
-
         }
         if (this.flag) {
             // this.game.ctx.fillStyle = rgb(11, 218, 81);

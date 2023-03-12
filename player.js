@@ -36,7 +36,7 @@ class Player {
         //spritesheet, xStart, yStart, width, height
         // idle animation (state = 0) (NOTE: is it necessary to make a new animation every time?)
         // facing down
-        this.animations[0][0] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48 * 4, 48, this.yHeight, 1, .2);
+        this.animations[0][0] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48 * 4, 48, this.yHeight, 1, 0.2);
         // facing left
         this.animations[0][1] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48 * 6, 48, this.yHeight, 1, 0.2);
         // facing right
@@ -46,7 +46,7 @@ class Player {
 
         // run animation (state = 1)
         // facing down
-        this.animations[1][0] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48 * 4, 48, this.yHeight, 4, .15);
+        this.animations[1][0] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48 * 4, 48, this.yHeight, 4, 0.15);
         // facing left
         this.animations[1][1] = new Animator(ASSET_MANAGER.getAsset("./hero.png"), 0 + this.xColorPadding, 48 * 6, 48, this.yHeight, 4, 0.15);
         // facing right
@@ -72,7 +72,7 @@ class Player {
 
     die() {
         this.game.alive = false;
-
+        ASSET_MANAGER.playAsset("./you_died.mp3");
     };
 
     setColor() {
@@ -197,7 +197,9 @@ class Player {
                 //If any enemy is hit, the player dies
                 if (entity instanceof Entity) {
                     that.state = 2;
-                    that.die();
+                    if (that.game.alive) {
+                        that.die();
+                    }
                 }
                 //If a collectable is hit by the player, the collectable is removed from the world and added to the players collectable count
                 that.itemCollision(entity, that);
@@ -207,7 +209,6 @@ class Player {
 
         if (this.game.alive == true) {
             // movement controller
-
             if (Math.abs(this.velocity.left) < MIN_WALK || Math.abs(this.velocity.right) < MIN_WALK) {
                 this.state = 0;
                 if (this.game.left) {
