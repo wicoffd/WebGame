@@ -89,7 +89,7 @@ var levelOne = {
 
     powerUp:
         [
-           // { x: 600, y: 404, width: 32, height: 32, type: "freeze2", number: 2 },
+            { x: 600, y: 404, width: 32, height: 32, type: "freeze2", number: 2 },
             { x: 600, y: 404, width: 32, height: 32, type: "freeze1", number: 1},
             { x: 620, y: 404, width: 32, height: 32, type: "freeze0", number: 0},
             { x: 660, y: 404, width: 32, height: 32, type: "freeze2", number: 2},
@@ -154,8 +154,8 @@ var levelTwo = {
         ],
     powerUp:
         [
-            { x: 180, y: 221, width: 32, height: 32, type: "freeze2", number: 2 },
-            { x: 976, y: 297, width: 32, height: 32, type: "freeze1", number: 1 },
+            { x: 180, y: 221, width: 32, height: 32, type: "freeze", number: 2 },
+            { x: 976, y: 297, width: 32, height: 32, type: "freeze", number: 1 },
         ],
 
 };
@@ -250,8 +250,8 @@ var levelThree = {
         ],
     powerUp:
         [
-            { x: 480, y: 330, width: 32, height: 32, type: "freeze0", number: 0 },
-            { x: 1076, y: 168, width: 32, height: 32, type: "freeze1", number: 1 },
+            { x: 480, y: 330, width: 32, height: 32, type: "freeze", number: 0 },
+            { x: 1076, y: 168, width: 32, height: 32, type: "freeze", number: 1 },
 
         ],
 
@@ -303,9 +303,8 @@ var levelFour = { // forest level
         ],
     entities:
         [
-            { color:"2", type: "owl", direction: "down", xPos: 280, yPos: 1035, range: 90},
-            { color:"4", type: "bear", direction: "right", xPos: 180, yPos: 825, range: 250},
-            { color:"4", type: "wolf", direction: "up", xPos: 378, yPos: 605, range: 200},
+            //{ color:"4", type: "cat", direction: "left", xPos: 300, yPos: 300, range: 150},
+
         ],
     collectable:
         [
@@ -318,9 +317,26 @@ var levelFour = { // forest level
 
 };
 var levelFive = { // final level
-    wall: [],
+    wall: [
+        //Main borders
+        { x: 0, y: 342, width: 362, height: 114 }, //south wall
+        { x: 355, y: 0, width: 25, height: 360 }, //east wall
+        { x: -10, y: 0, width: 18, height: 360 }, //west wall
+        { x: -3, y: 67, width: 378, height: 59 }, //north wall
+
+        //Pillars
+        { x: 14, y: 193, width: 31, height: 27 }, //pillar 1 left
+        { x: 42, y: 160, width: 31, height: 31 }, //pillar 2 left
+        { x: 70, y: 137, width: 31, height: 27 }, //pillar 3 left
+        { x: 98, y: 106, width: 31, height: 27 }, //pillar 4 left
+
+        { x: 317, y: 193, width: 31, height: 27 }, //pillar 1 right
+        { x: 290, y: 160, width: 31, height: 31 }, //pillar 2 right
+        { x: 261, y: 137, width: 31, height: 27 }, //pillar 3 right
+        { x: 234, y: 106, width: 31, height: 27 }, //pillar 4 right
+    ],
     door: [
-        { x: 400, y: 400, width: 10, height: 31, direction: "south", destination: "credits" }, //at computer station // change to credits
+        { x: 126, y: 120, width: 114, height: 7, direction: "south", destination: "credits" }, //at computer station // change to credits
     ],
     item: [],
     entities: [],

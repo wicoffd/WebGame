@@ -159,8 +159,8 @@ class Player {
                         }
                 }
                 // If all the collectables are found in a map, the door is available
-                if (entity instanceof Door && that.collectableCounter >= that.collectableGoal && entity.destination == "credits") {
-                    if(entity.destination = "credits" && Math.round(that.BB.bottom) == entity.BB.top || Math.round(that.BB.bottom) == (entity.BB.top - 1) || Math.round(that.BB.bottom) == (entity.BB.top + 1)) {
+                if (entity instanceof Door && entity.destination == "credits") {
+                    if(entity.destination = "credits") {
                         that.doorUnlocked = true;
                     }
                 }
@@ -192,7 +192,7 @@ class Player {
                     if (Math.round(that.BB.top) == entity.BB.bottom || Math.round(that.BB.top) == (entity.BB.bottom - 1) || Math.round(that.BB.top) == (entity.BB.bottom + 1)) {
                         that.inventory.savePowerUpMap();
                         console.log("unintentional save");
-                        that.game.camera.loadLevel(levelFive, -85,520)
+                        that.game.camera.loadLevel(levelFive, -350,-100)
 
                     }
                 }
@@ -205,6 +205,7 @@ class Player {
                 that.itemCollision(entity, that);
             }
         });
+
 
 
         if (this.game.alive == true) {
@@ -314,7 +315,6 @@ class Player {
         if (this.doorUnlocked) {
             
             if(this.game.credits!=true){
-                
                 this.game.credits = true;
             }
         }
