@@ -12,7 +12,7 @@ class SceneManager {
         this.mapOffsetY = 0;
         //this.level = levelOne;
         // /*old*/this.game.ctx.transform(2, 0, 0, 2, -512, -384);
-        this.game.ctx.transform(3, 0, 0, 3, -1024 - 72, -768 - 96);
+        //this.game.ctx.transform(3, 0, 0, 3, -1024 - 72, -768 - 96);
         this.flag = false;
         // spawn player in middle
         // this.midpoint_x = this.game.ctx.canvas.width / 2;
@@ -22,7 +22,7 @@ class SceneManager {
         console.log("scenemanager constructed")
         this.midpoint_x = this.game.ctx.canvas.width / 2;// moved from load level
         this.midpoint_y = this.game.ctx.canvas.height / 2;// moved from load level
-        this.loadLevel(levelOne, 0, 0);
+        this.loadLevel(levelFour, -340, 670);
         
     };
 

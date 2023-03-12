@@ -72,6 +72,7 @@ class Entity {
     setType() { // use type to assign variables
         switch(this.type){
             case "owl":
+                this.scale = .6;
                 this.asset = "./Owl.png";
             break;
 

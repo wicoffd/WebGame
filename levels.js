@@ -154,8 +154,8 @@ var levelTwo = {
         ],
     powerUp:
         [
-            { x: 180, y: 221, width: 32, height: 32, type: "freeze", number: 2 },
-            { x: 976, y: 297, width: 32, height: 32, type: "freeze", number: 1 },
+            { x: 180, y: 221, width: 32, height: 32, type: "freeze2", number: 2 },
+            { x: 976, y: 297, width: 32, height: 32, type: "freeze1", number: 1 },
         ],
 
 };
@@ -250,8 +250,8 @@ var levelThree = {
         ],
     powerUp:
         [
-            { x: 480, y: 330, width: 32, height: 32, type: "freeze", number: 0 },
-            { x: 1076, y: 168, width: 32, height: 32, type: "freeze", number: 1 },
+            { x: 480, y: 330, width: 32, height: 32, type: "freeze0", number: 0 },
+            { x: 1076, y: 168, width: 32, height: 32, type: "freeze1", number: 1 },
 
         ],
 
@@ -303,8 +303,9 @@ var levelFour = { // forest level
         ],
     entities:
         [
-            //{ color:"4", type: "cat", direction: "left", xPos: 300, yPos: 300, range: 150},
-
+            { color:"2", type: "owl", direction: "down", xPos: 280, yPos: 1035, range: 90},
+            { color:"4", type: "bear", direction: "right", xPos: 180, yPos: 825, range: 250},
+            { color:"4", type: "wolf", direction: "up", xPos: 378, yPos: 605, range: 200},
         ],
     collectable:
         [
