@@ -120,6 +120,7 @@ class Entity {
 
             case "pig":
                 this.asset = "./Pig.png";
+                this.scale = .8;
             break;
 
             case "raccoon":
@@ -203,7 +204,7 @@ class Entity {
 
         var that = this;
         this.game.entities.forEach(function (entity) {
-            if (entity.BB && that.BB.collide(entity.BB)) {
+            if (entity.BB && that.BB.collide(entity.BB) && (that.game.powerUpUsed=="null")) {
                 if ((entity instanceof Wall || entity instanceof Item) && dist < 250){  
                     //Vertical Collision
                     if (Math.round(that.BB.top) == entity.BB.bottom || Math.round(that.BB.top) == (entity.BB.bottom+1) || Math.round(that.BB.top) == (entity.BB.bottom-1)) { 
@@ -238,7 +239,7 @@ class Entity {
             } 
         });
 		
-		if(this.direction = "left"){
+		if(this.direction == "left"){
 			// hussein's new code
             if(this.inRange){
 			this.state = 1;
@@ -246,7 +247,7 @@ class Entity {
             this.directionInt = 1;
 		}
 
-        if(this.direction = "right"){
+        if(this.direction == "right"){
 			// hussein's new code
             if(this.inRange){
 			this.state = 1;
@@ -254,7 +255,7 @@ class Entity {
             this.yDirectionPadding = 48*2; // needs work
         }
 
-        if(this.direction = "up"){
+        if(this.direction == "up"){
 			// hussein's new code
             if(this.inRange){
 			this.state = 1;
@@ -262,7 +263,7 @@ class Entity {
             this.yDirectionPadding = 48*3
         }
 		
-        if(this.direction = "down"){
+        if(this.direction == "down"){
             // hussein's new code
             if(this.inRange){
 			this.state = 1;

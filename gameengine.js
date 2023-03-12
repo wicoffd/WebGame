@@ -9,6 +9,7 @@ class GameEngine {
         // Everything that will be updated and drawn each frame
         this.entities = [];
         this.alive = true;
+        this.invPos = 0;
         // Information on the input
         this.click = null;
         this.mouse = null;
@@ -23,11 +24,16 @@ class GameEngine {
         this.B = false;
         this.enter = false;
         this.credits = false;
-
+        this.E = false;
+        this.Q = false;
+        this.use = false;
         // Options and the Details
         this.options = options || {
             debugging: false,
         };
+        // global variables
+        this.lastMap = new Map();
+        this.powerUpUsed = "null";
     };
 
     init(ctx) {
@@ -57,7 +63,7 @@ class GameEngine {
         }
         function mouseClickListener(e) {
             that.click = getXandY(e);
-            //if (PARAMS.DEBUG) console.log(that.click);
+            if (true) console.log(that.click);
         }
         function wheelListener(e) {
             e.preventDefault(); // Prevent Scrolling
@@ -96,6 +102,37 @@ class GameEngine {
                 case "Enter":
                     that.enter = true;
                     break;
+                case "KeyQ":
+                case "Slash":
+                    //setTimeout(function(){
+                    switch (that.alive) {
+                        case true:
+                            that.invPos -= 1;
+                            //},1000);
+                            that.Q = true;
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case "KeyE":
+                case "ShiftRight":
+                    //setTimeout(function(){
+                    switch (that.alive) {
+                        case true:
+                            that.invPos += 1;
+                            //    },1000);
+                            that.E = true;
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case "KeyR":
+                case "Numpad1":
+                    that.use = true;
+                    break;
+
             }
         }
         function keyUpListener(e) {
@@ -129,6 +166,18 @@ class GameEngine {
                     break;
                 case "Enter":
                     that.enter = false;
+                    break;
+                case "KeyQ":
+                case "Slash":
+                    that.Q = false;
+                    break;
+                case "KeyE":
+                case "ShiftRight":
+                    that.E = false;
+                    break;
+                case "KeyR":
+                case "Numpad1":
+                    that.use = false;
                     break;
             }
         }
@@ -177,7 +226,7 @@ class GameEngine {
         this.ctx.canvas.addEventListener("keydown", that.keydown, false);
 
         this.ctx.canvas.addEventListener("keyup", that.keyup, false);
-        this.ctx.canvas.addEventListener("enter", that.keyup, false);
+        //this.ctx.canvas.addEventListener("enter", that.keyup, false); // might not be needed
 
     };
 
@@ -231,4 +280,3 @@ class GameEngine {
 
 };
 
-// KV Le was here :)    
