@@ -157,7 +157,7 @@ var levelThree = {
     ],
     collectable:[],
     powerUp:[
-        { x: 400, y: 400, width: 32, height: 32, type: "freeze", number: 0},
+        { x: 400, y: 400, width: 32, height: 32, type: "freeze0", number: 0},
 
     ], 
     

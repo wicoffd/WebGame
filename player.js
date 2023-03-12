@@ -265,10 +265,14 @@ class Player {
         }
         if (entity instanceof PowerUp) {
             // if entity.has(type){}
+            console.log(entity.type + " entity.type");
             if(this.inventory.hasPowerUp(entity.type)){
             this.inventory.setPowerUp(entity.type);
+            
+            console.log("set powerup item colision if")
             //this.inventory.powerUp.set(entity.type, this.inventory.powerUp.get(entity.type)+1);
             }else{
+                console.log("set powerup item colision else")
                 this.inventory.setPowerUp(entity.type);
                 //this.inventory.powerUp.set(entity.type, 1);
             }
