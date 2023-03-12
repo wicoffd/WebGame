@@ -133,15 +133,25 @@ var levelTwo = {
         ],
     entities:
         [
+            { color: "2", type: "raccoon", direction: "left", xPos: 508, yPos: 216, range: 120 },
+            { color: "6", type: "raccoon", direction: "left", xPos: 1097, yPos: 413, range: 120 },
+            { color: "2", type: "bunny", direction: "down", xPos: 762, yPos: 218, range: 120 },
+            { color: "5", type: "bunny", direction: "down", xPos: 1072, yPos: 219, range: 120 },
+            { color: "2", type: "goose", direction: "left", xPos: 850, yPos: 358, range: 120 },
+            { color: "3", type: "goose", direction: "left", xPos: 171, yPos: 431, range: 120 },
+            { color: "4", type: "goose", direction: "down", xPos: 519, yPos: 450, range: 120 },
 
         ],
     collectable:
         [
-
+            { x: 167, y: 372, width: 32, height: 32, number: 2 },
+            { x: 978, y: 472, width: 32, height: 32, number: 3 },
+            { x: 801, y: 288, width: 32, height: 32, number: 4 },
         ],
     powerUp:
         [
-
+            { x: 180, y: 221, width: 32, height: 32, type: "freeze", number: 2 },
+            { x: 976, y: 297, width: 32, height: 32, type: "freeze", number: 1 },
         ],
 
 };
@@ -187,7 +197,7 @@ var levelThree = {
         [
             { x: 225, y: 315, width: 19, height: 20 }, //rocks 1 - main road (north)
             { x: 236, y: 328, width: 19, height: 14 }, //rocks 2 - main road (north)
-            { x: 513, y: 336, width: 17, height: 13 }, //rocks 3 - main road (north)
+            { x: 513, y: 340, width: 17, height: 9 }, //rocks 3 - main road (north)
             { x: 520, y: 313, width: 25, height: 28 }, //rocks 4 - main road (north)
             { x: 677, y: 314, width: 37, height: 34 }, //cart 
             { x: 708, y: 311, width: 38, height: 27 }, //fruit boxes - main road
@@ -206,32 +216,40 @@ var levelThree = {
             { x: 1018, y: 522, width: 11, height: 13 }, //water 2 - sheep area
             { x: 1079, y: 439, width: 33, height: 37 }, //rocks 9 - main road (south)
         ],
-    entities: [
-        //Chickens
-        /*   { color: "1", type: "chicken", direction: "down", xPos: 1010, yPos: 198, range: 00 },
-           { color: "3", type: "chicken", direction: "left", xPos: 1076, yPos: 260, range: 00 },
-           //{ color:"1", type: "chicken", direction: "down", xPos: 612, yPos: 150, range: 00},
-           { color: "8", type: "chicken", direction: "down", xPos: 755, yPos: 325, range: 00 },
-           { color: "7", type: "chicken", direction: "right", xPos: 270, yPos: 325, range: 100 },//280x 445y
-           { color: "1", type: "chicken", direction: "right", xPos: 280, yPos: 375, range: 100 },
-           { color: "3", type: "chicken", direction: "right", xPos: 265, yPos: 425, range: 100 },
-           { color: "2", type: "chicken", direction: "down", xPos: 1025, yPos: 442, range: 0 },
-   
-           //Sheep
-           { color: "1", type: "sheep", direction: "down", xPos: 900, yPos: 550, range: 00 },
-           { color: "1", type: "sheep", direction: "right", xPos: 1050, yPos: 530, range: 0 },
-           { color: "3", type: "sheep", direction: "left", xPos: 850, yPos: 600, range: 0 },
-   
-           //Pigs
-           { color: "5", type: "pig", direction: "left", xPos: 340, yPos: 210, range: 80 }, //far left
-           { color: "8", type: "pig", direction: "down", xPos: 380, yPos: 130, range: 80 }, //middle 380x, 150y
-           { color: "7", type: "pig", direction: "right", xPos: 450, yPos: 210, range: 60 }, //far right */
-    ],
-    collectable: [],
-    powerUp: [
-        { x: 400, y: 400, width: 32, height: 32, type: "freeze", number: 0 },
+    entities:
+        [
+            //Chickens
+            { color: "1", type: "chicken", direction: "down", xPos: 1010, yPos: 198, range: 00 },
+            { color: "3", type: "chicken", direction: "left", xPos: 1076, yPos: 260, range: 00 },
+            { color: "1", type: "chicken", direction: "down", xPos: 612, yPos: 150, range: 00 },
+            { color: "8", type: "chicken", direction: "down", xPos: 755, yPos: 325, range: 00 },
+            { color: "7", type: "chicken", direction: "right", xPos: 280, yPos: 445, range: 70 },
+            //{ color: "1", type: "chicken", direction: "right", xPos: 280, yPos: 375, range: 100 },
+            //{ color: "3", type: "chicken", direction: "right", xPos: 265, yPos: 425, range: 100 },
+            { color: "2", type: "chicken", direction: "down", xPos: 1025, yPos: 442, range: 0 },
 
-    ],
+            //Sheep
+            { color: "1", type: "sheep", direction: "down", xPos: 900, yPos: 550, range: 00 },
+            { color: "1", type: "sheep", direction: "right", xPos: 1050, yPos: 530, range: 0 },
+            { color: "3", type: "sheep", direction: "left", xPos: 850, yPos: 600, range: 0 },
+
+            //Pigs
+            { color: "5", type: "pig", direction: "left", xPos: 340, yPos: 210, range: 0 }, //far left
+            { color: "8", type: "pig", direction: "down", xPos: 380, yPos: 150, range: 0 }, //middle 380x, 150y
+            { color: "7", type: "pig", direction: "right", xPos: 450, yPos: 210, range: 0 }, //far right 
+        ],
+    collectable:
+        [
+            { x: 424, y: 232, width: 32, height: 32, number: 5 },
+            { x: 1065, y: 190, width: 32, height: 32, number: 6 },
+            { x: 1036, y: 550, width: 32, height: 32, number: 8 },
+        ],
+    powerUp:
+        [
+            { x: 480, y: 330, width: 32, height: 32, type: "freeze", number: 0 },
+            { x: 1076, y: 168, width: 32, height: 32, type: "freeze", number: 1 },
+
+        ],
 
 };
 var levelFour = { // forest level
