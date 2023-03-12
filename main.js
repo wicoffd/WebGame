@@ -12,9 +12,15 @@ ASSET_MANAGER.queueDownload("./Bear.png")
 ASSET_MANAGER.queueDownload("./Geese.png")
 ASSET_MANAGER.queueDownload("./Raccoon.png")
 ASSET_MANAGER.queueDownload("./Sheep.png")
+ASSET_MANAGER.queueDownload("./Pig.png")
 ASSET_MANAGER.queueDownload("./Wolf.png")
 ASSET_MANAGER.queueDownload("./MapHouse.png")
-ASSET_MANAGER.queueDownload("./Collectable_Flashdrive.png")
+ASSET_MANAGER.queueDownload("./MapFarm.png")
+ASSET_MANAGER.queueDownload("./MapFinal.png")
+ASSET_MANAGER.queueDownload("./MapForest.png")
+ASSET_MANAGER.queueDownload("./MapHouse_exterior.png")
+ASSET_MANAGER.queueDownload("./Collectables.png")
+ASSET_MANAGER.queueDownload("./Powerups.png")
 
 
 ASSET_MANAGER.downloadAll(() => {
