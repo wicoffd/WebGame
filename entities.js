@@ -98,6 +98,7 @@ class Entity {
 
             case "bunny":
                 this.asset = "./Bunny.png";
+                this.scale = .5;
             break;
 
             case "cat":
@@ -120,6 +121,8 @@ class Entity {
 
             case "pig":
                 this.asset = "./Pig.png";
+                this.scale = .7;
+                this.maxSpeed = (Math.random() * (65 - 55) + 55);
             break;
 
             case "raccoon":
@@ -204,15 +207,15 @@ class Entity {
         var that = this;
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BB.collide(entity.BB)) {
-                if ((entity instanceof Wall || entity instanceof Item) && dist < 250){  
+                if ((entity instanceof Wall || entity instanceof Item) && dist < 350){  
                     //Vertical Collision
-                    if (Math.round(that.BB.top) == entity.BB.bottom || Math.round(that.BB.top) == (entity.BB.bottom+1) || Math.round(that.BB.top) == (entity.BB.bottom-1)) { 
+                    if (Math.round(that.BB.top) == entity.BB.bottom || Math.round(that.BB.top) == (entity.BB.bottom+1) || Math.round(that.BB.top) == (entity.BB.bottom-1) || Math.round(that.BB.top) == (entity.BB.bottom+2) || Math.round(that.BB.top) == (entity.BB.bottom-2)) { 
                         that.yPos -= that.velocity.up * that.game.clockTick;
                         that.yPos = that.yPos + .05;
                         //console.log("Wall Above");
                         that.updateBB();   
                     } else
-                    if (Math.round(that.BB.bottom) == entity.BB.top || Math.round(that.BB.bottom) == (entity.BB.top+1) || Math.round(that.BB.bottom) == (entity.BB.top-1)) 
+                    if (Math.round(that.BB.bottom) == entity.BB.top || Math.round(that.BB.bottom) == (entity.BB.top+1) || Math.round(that.BB.bottom) == (entity.BB.top-1) || Math.round(that.BB.bottom) == (entity.BB.top+2) || Math.round(that.BB.bottom) == (entity.BB.top-2)) 
                     { 
                         that.yPos -= that.velocity.down * that.game.clockTick;
                         that.yPos = that.yPos - .05;
@@ -221,13 +224,13 @@ class Entity {
                     } 
 
                     //Horizontal Collision
-                    if (Math.round(that.BB.right) == entity.BB.left || Math.round(that.BB.right) == (entity.BB.left + 1) || Math.round(that.BB.right) == (entity.BB.left - 1) ) { 
+                    if (Math.round(that.BB.right) == entity.BB.left || Math.round(that.BB.right) == (entity.BB.left + 1) || Math.round(that.BB.right) == (entity.BB.left - 1) || Math.round(that.BB.right) == (entity.BB.left + 2) || Math.round(that.BB.right) == (entity.BB.left - 2)) { 
                         that.xPos -= that.velocity.right * that.game.clockTick;
                         that.xPos = that.xPos - .05;
                         //console.log("Wall to right");
                         that.updateBB();   
                     } else 
-                    if (Math.round(that.BB.left) == entity.BB.right || Math.round(that.BB.left) == (entity.BB.right - 1) || Math.round(that.BB.left) == (entity.BB.right + 1)) 
+                    if (Math.round(that.BB.left) == entity.BB.right || Math.round(that.BB.left) == (entity.BB.right - 1) || Math.round(that.BB.left) == (entity.BB.right + 1) || Math.round(that.BB.left) == (entity.BB.right - 2) || Math.round(that.BB.left) == (entity.BB.right + 2)) 
                     { 
                         that.xPos -= that.velocity.left * that.game.clockTick;
                         that.xPos = that.xPos + .05;
@@ -238,7 +241,7 @@ class Entity {
             } 
         });
 		
-		if(this.direction = "left"){
+		if(this.direction == "left"){
 			// hussein's new code
             if(this.inRange){
 			this.state = 1;
@@ -246,7 +249,7 @@ class Entity {
             this.directionInt = 1;
 		}
 
-        if(this.direction = "right"){
+        if(this.direction == "right"){
 			// hussein's new code
             if(this.inRange){
 			this.state = 1;
@@ -254,7 +257,7 @@ class Entity {
             this.yDirectionPadding = 48*2; // needs work
         }
 
-        if(this.direction = "up"){
+        if(this.direction == "up"){
 			// hussein's new code
             if(this.inRange){
 			this.state = 1;
@@ -262,7 +265,7 @@ class Entity {
             this.yDirectionPadding = 48*3
         }
 		
-        if(this.direction = "down"){
+        if(this.direction == "down"){
             // hussein's new code
             if(this.inRange){
 			this.state = 1;
@@ -324,8 +327,8 @@ class Entity {
             this.yPos - this.game.camera.y,
             this.scale)
         
-        // ctx.strokeStyle = 'Red';
-        // ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
+         ctx.strokeStyle = 'Red';
+         ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
 
     };
     setDirection(xVel,yVel){ // remove commented debug code once complete.

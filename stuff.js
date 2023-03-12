@@ -1,13 +1,39 @@
 class Stuff {
-    constructor(game) {
-        Object.assign(this, {game});
+    constructor(game, map) {
+        Object.assign(this, {game, map});
 
         this.xPos = 0;
         this.yPos = 0;
         this.width = 1280;
         this.height = 768;
-
-        this.map = ASSET_MANAGER.getAsset("./MapHouse.png");
+        
+        switch(this.map){
+            case levelOne:
+                this.map = ASSET_MANAGER.getAsset("./MapHouse.png");
+            break;
+            case levelTwo:
+                this.map = ASSET_MANAGER.getAsset("./MapHouse_exterior.png");
+                this.width = 1392;
+            break;
+            case levelThree:
+                this.map = ASSET_MANAGER.getAsset("./MapFarm.png");
+            break;
+            case levelFour:
+                this.width = 640;
+                this.height = 1280;
+                this.map = ASSET_MANAGER.getAsset("./MapForest.png");
+            break;
+            case levelFive:
+                this.width = 640;
+                this.height = 1280;
+                this.map = ASSET_MANAGER.getAsset("./MapFinal.png");
+            break;
+            default:
+                //console.log(this.map);
+                console.log("default error");
+            break;
+        }
+        
     };
 
     update(){
