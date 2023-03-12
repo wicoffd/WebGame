@@ -159,38 +159,40 @@ class Player {
                         }
                 }
                 // If all the collectables are found in a map, the door is available
-                if (entity instanceof Door && that.collectableCounter >= that.collectableGoal && entity.destination == "credits") {
-                    if(entity.destination = "credits" && Math.round(that.BB.bottom) == entity.BB.top || Math.round(that.BB.bottom) == (entity.BB.top - 1) || Math.round(that.BB.bottom) == (entity.BB.top + 1)) {
+                if (entity instanceof Door && entity.destination == "credits") {
+                    if(entity.destination = "credits") {
                         that.doorUnlocked = true;
                     }
                 }
-                else if (entity instanceof Door && entity.destination == "levelTwo") {
+                else if (entity instanceof Door && that.collectableCounter >= that.collectableGoal && entity.destination == "levelTwo") {
                     if (Math.round(that.BB.bottom) == entity.BB.top || Math.round(that.BB.bottom) == (entity.BB.top - 1) || Math.round(that.BB.bottom) == (entity.BB.top + 1)) {
-                    // that.game.camera.loadLevel(levelTwo,x,y);
+                        that.inventory.savePowerUpMap();
+                        that.game.camera.loadLevel(levelTwo, -152, -190)
                     }
                 }
-                else if (entity instanceof Door && entity.destination == "levelThree") {
-                    if (Math.round(that.BB.bottom) == entity.BB.top || Math.round(that.BB.bottom) == (entity.BB.top - 1) || Math.round(that.BB.bottom) == (entity.BB.top + 1)) {
+                else if (entity instanceof Door && that.collectableCounter >= that.collectableGoal && entity.destination == "levelThree") {
+                    //console.log("level three");
+                    if (Math.round(that.BB.right) == entity.BB.left || Math.round(that.BB.right) == (entity.BB.left - 1) || Math.round(that.BB.right) == (entity.BB.left + 1)) {
                         console.log("unintentional save");
-                        
+                        console.log("level three");
                         that.inventory.savePowerUpMap();
-                        that.game.camera.loadLevel(levelThree, -310,-70)
+                        that.game.camera.loadLevel(levelThree, -310,-40)
 
                     }
                 }
-                else if (entity instanceof Door && entity.destination == "levelFour") {
+                else if (entity instanceof Door && that.collectableCounter >= that.collectableGoal && entity.destination == "levelFour") {
                     if (Math.round(that.BB.right) == entity.BB.left || Math.round(that.BB.right) == (entity.BB.left - 1) || Math.round(that.BB.right) == (entity.BB.left + 1)) {
                         that.inventory.savePowerUpMap();
                         console.log("unintentional save");
-                        that.game.camera.loadLevel(levelFour, 74,728)
+                        that.game.camera.loadLevel(levelFour, -340, 670)
 
                     }
                 }
-                else if (entity instanceof Door && entity.destination == "levelFive") {
+                else if (entity instanceof Door && that.collectableCounter >= that.collectableGoal && entity.destination == "levelFive") {
                     if (Math.round(that.BB.top) == entity.BB.bottom || Math.round(that.BB.top) == (entity.BB.bottom - 1) || Math.round(that.BB.top) == (entity.BB.bottom + 1)) {
                         that.inventory.savePowerUpMap();
                         console.log("unintentional save");
-                        that.game.camera.loadLevel(levelFive, 74,728)
+                        that.game.camera.loadLevel(levelFive, -350,-100)
 
                     }
                 }
@@ -203,6 +205,7 @@ class Player {
                 that.itemCollision(entity, that);
             }
         });
+
 
 
         if (this.game.alive == true) {
@@ -312,7 +315,6 @@ class Player {
         if (this.doorUnlocked) {
             
             if(this.game.credits!=true){
-                
                 this.game.credits = true;
             }
         }
