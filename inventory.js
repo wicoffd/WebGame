@@ -28,22 +28,26 @@ class InventoryManager {
         if (this.current.size == 0) { this.game.invPos = 0; } // resets the inventory position on item pickup
         //console.log("set");
         if (this.current.has(string)) {
-            //console.log(string + " set string");
-            this.current.set(string, this.current.get(string) += 1);
-
+            console.log(string + " set string");
+            console.log("this.current.get =  "+ this.current.get(string));
+            this.current.set(string, this.current.get(string)+1);
+            this.refresh = true;
+            console.log("setpowerup if");
         }
         else {
             //console.log(string + " set string");
             this.current.set(string, 1);
             this.refresh = true;
         }
-        this.refresh = true;
+        
         // console.log("set powerup method call " + this.game.lastMap.size);
         // console.log(this.refresh + " refresh state");
 
     }
     hasPowerUp(string) {
-        this.current.has(string);
+        console.log(string +  " string entity.type");
+        console.log(this.current.has(string));
+        return this.current.has(string);
         //console.log("has powerup method call " + this.game.lastMap.size);
     }
     usePowerUp(string) {
@@ -59,7 +63,7 @@ class InventoryManager {
     }
     removePowerUp(string) {
         // if logic?
-        this.current.set(string, this.current.get(string) -= 1);
+        this.current.set(string, this.current.get(string) - 1);
         this.refresh = true;
     }
     savePowerUpMap() {// save the state of powerup map on moving
@@ -186,7 +190,7 @@ class InventoryManager {
             // console.log("negative invPos");
             this.game.invPos = this.current.size;
         } else if (this.game.invPos > this.current.size) { this.game.invPos = 0; }// wraps the position back to zero
-        if ((this.game.E || this.game.Q)) {
+        if ((this.game.E || this.game.Q ) || this.refresh) {
             this.updateItems();
             this.refresh = true;
         }
