@@ -9,7 +9,6 @@ class GameEngine {
         // Everything that will be updated and drawn each frame
         this.entities = [];
         this.alive = true;
-        this.invPos = 0;
         // Information on the input
         this.click = null;
         this.mouse = null;
@@ -31,9 +30,6 @@ class GameEngine {
         this.options = options || {
             debugging: false,
         };
-        // global variables
-        this.lastMap = new Map();
-        this.powerUpUsed = "null";
     };
 
     init(ctx) {
@@ -104,35 +100,17 @@ class GameEngine {
                     break;
                 case "KeyQ":
                 case "Slash":
-                    //setTimeout(function(){
-                    switch (that.alive) {
-                        case true:
-                            that.invPos -= 1;
-                            //},1000);
-                            that.Q = true;
-                            break;
-                        default:
-                            break;
-                    }
+                    that.Q = true;
                     break;
                 case "KeyE":
                 case "ShiftRight":
-                    //setTimeout(function(){
-                    switch (that.alive) {
-                        case true:
-                            that.invPos += 1;
-                            //    },1000);
-                            that.E = true;
-                            break;
-                        default:
-                            break;
-                    }
+                    that.E = true;
                     break;
                 case "KeyR":
                 case "Numpad1":
                     that.use = true;
                     break;
-
+                    
             }
         }
         function keyUpListener(e) {
@@ -227,7 +205,7 @@ class GameEngine {
 
         this.ctx.canvas.addEventListener("keyup", that.keyup, false);
         //this.ctx.canvas.addEventListener("enter", that.keyup, false); // might not be needed
-
+        
     };
 
     addEntity(entity) {
@@ -280,3 +258,4 @@ class GameEngine {
 
 };
 
+  

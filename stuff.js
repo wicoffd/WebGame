@@ -11,6 +11,10 @@ class Stuff {
             case levelOne:
                 this.map = ASSET_MANAGER.getAsset("./MapHouse.png");
             break;
+            case levelTwo:
+                this.map = ASSET_MANAGER.getAsset("./MapHouse_exterior.png");
+                this.width = 1392;
+            break;
             case levelThree:
                 this.map = ASSET_MANAGER.getAsset("./MapFarm.png");
             break;

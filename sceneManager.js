@@ -8,6 +8,8 @@ class SceneManager {
         this.playerOffsetX = 0;
         this.playerOffsetY = 0;
         this.deaths = 0;
+        this.mapOffsetX = 0
+        this.mapOffsetY = 0;
         //this.level = levelOne;
         //this.game.ctx.transform(2, 0, 0, 2, -512, -384);
         this.game.ctx.transform(3, 0, 0, 3, -1024 - 72, -768 - 96);
@@ -18,12 +20,14 @@ class SceneManager {
         //this.player = new Player(this.game,"1","down",this.midpoint_x, this.midpoint_y);
         this.inventory = new InventoryManager();
         console.log("scenemanager constructed")
-        this.loadLevel(levelOne, 0, 0);
+        this.loadLevel(levelTwo, 0, 0);
     };
 
     loadLevel(levelname, x, y) { // add varaible for level name
 
         this.clearEntities();
+        this.playerOffsetX = x;
+        this.playerOffsetY = y;
         this.playerOffsetX = x;
         this.playerOffsetY = y;
         this.level = eval(levelname);
@@ -97,7 +101,7 @@ class SceneManager {
             ////this.inventory.savePowerUpMap();
             this.clearEntities();
             this.game.alive = true;
-            this.loadLevel(this.level,0,0);
+            this.loadLevel(this.level,this.playerOffsetX,this.playerOffsetY);
         }
         if (this.game.credits) {// logic for credits 
             //if(!this.entities[0] instanceof Player){
