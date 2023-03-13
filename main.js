@@ -22,7 +22,7 @@ ASSET_MANAGER.queueDownload("./MapHouse_exterior.png")
 ASSET_MANAGER.queueDownload("./Collectables.png")
 ASSET_MANAGER.queueDownload("./Powerups.png")
 ASSET_MANAGER.queueDownload("./text.png")
-//ASSET_MANAGER.queueDownload("./text.gif")
+
 
 
 ASSET_MANAGER.downloadAll(() => {
