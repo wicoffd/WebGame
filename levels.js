@@ -89,7 +89,7 @@ var levelOne = {
 
     powerUp:
         [
-            { x: 600, y: 404, width: 32, height: 32, type: "freeze2", number: 2 },
+            { x: 1100, y: 304, width: 32, height: 32, type: "freeze2", number: 2 },
             { x: 600, y: 404, width: 32, height: 32, type: "freeze1", number: 1},
 
         ],
