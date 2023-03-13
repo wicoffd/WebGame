@@ -55,7 +55,9 @@ class InventoryManager {
         // TODO
         //console.log(string);
         //console.log(this.current.has(string));
-        this.game.frozen = true;
+        if(this.current.size >0){
+            this.game.frozen = true;
+        }
         this.removePowerUp(string);
         switch (string) {
             case "freeze0":
@@ -71,6 +73,7 @@ class InventoryManager {
                 this.timer = 6000; // 6 sec
                 //this.game.target
                 break;
+            
         }
         await this.sleep(this.timer);
         this.game.frozen = false;

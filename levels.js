@@ -91,9 +91,7 @@ var levelOne = {
         [
             { x: 600, y: 404, width: 32, height: 32, type: "freeze2", number: 2 },
             { x: 600, y: 404, width: 32, height: 32, type: "freeze1", number: 1},
-            { x: 620, y: 404, width: 32, height: 32, type: "freeze0", number: 0},
-            { x: 660, y: 404, width: 32, height: 32, type: "freeze2", number: 2},
-            { x: 600, y: 424, width: 32, height: 32, type: "meat", number: 3},
+
         ],
 
 };
@@ -250,8 +248,9 @@ var levelThree = {
         ],
     powerUp:
         [
-            { x: 480, y: 330, width: 32, height: 32, type: "freeze0", number: 0 },
+            { x: 480, y: 330, width: 32, height: 32, type: "freeze1", number: 1 },
             { x: 1076, y: 168, width: 32, height: 32, type: "freeze1", number: 1 },
+            { x: 530, y: 200, width: 32, height: 32, type: "meat", number: 3},
 
         ],
 

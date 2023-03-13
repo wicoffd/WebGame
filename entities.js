@@ -130,6 +130,8 @@ class Entity {
             case "pig":
                 this.asset = "./Pig.png";
                 this.scale = .7;
+                this.xBB = 15;
+                this.yBB = 17;
                 this.maxSpeed = (Math.random() * (65 - 55) + 55)* this.speedScale;
             break;
 
@@ -142,7 +144,9 @@ class Entity {
             case "sheep":
                 this.asset = "./Sheep.png";
                 this.scale = .80;
-                this.maxSpeed = this.maxSpeed*this.speedScale;
+                this.xBB = 15;
+                this.yBB = 17;
+                this.maxSpeed = (Math.random() * (55 - 35) + 35)*this.speedScale;
             break;
 
             case "wolf":
