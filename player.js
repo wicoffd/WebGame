@@ -272,7 +272,7 @@ class Player {
             
             console.log("set powerup item colision if")
             //this.inventory.powerUp.set(entity.type, this.inventory.powerUp.get(entity.type)+1);
-            }else{
+            } else{
                 console.log("set powerup item colision else")
                 this.inventory.setPowerUp(entity.type);
                 //this.inventory.powerUp.set(entity.type, 1);
@@ -280,6 +280,7 @@ class Player {
             //that.powerUp.set(entity.type, this.powerUp.get(entity.type)+1); // something like this
             //else{}
             entity.removeFromWorld = true;
+            // PLAY PICKUP SOUND
             //console.log(that.powerUp.has(entity.type) + " " + entity.type +" " +  this.powerUp.get(entity.type) + " number of powerups");
         }
     }

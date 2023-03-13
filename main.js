@@ -29,6 +29,7 @@ ASSET_MANAGER.queueDownload("./BGM3_afternoon_angels.mp3")
 ASSET_MANAGER.queueDownload("./BGM4_MALIBU.mp3")
 ASSET_MANAGER.queueDownload("./BMG5_theme_of_confrontation_steady_version.mp3")
 ASSET_MANAGER.queueDownload("./you_died.mp3")
+ASSET_MANAGER.queueDownload("./coin.mp3")
 
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");
