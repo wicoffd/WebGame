@@ -259,10 +259,10 @@ class SceneManager {
             // Death Counter
             this.game.ctx.fillStyle = "white";
             this.game.ctx.font = "10px Russo-Regular";
-            this.game.ctx.fillText('Deaths:' + this.deaths, (this.midpoint_x + 155), (this.midpoint_y - 82));
+            this.game.ctx.fillText('Deaths:' + this.deaths, (this.midpoint_x + 145), (this.midpoint_y - 82));
             this.game.ctx.strokeStyle = 'black';
             this.game.ctx.lineWidth = .23;
-            this.game.ctx.strokeText('Deaths:' + this.deaths, (this.midpoint_x + 155), (this.midpoint_y - 82));
+            this.game.ctx.strokeText('Deaths:' + this.deaths, (this.midpoint_x + 145), (this.midpoint_y - 82));
             this.game.ctx.strokeStyle = 'white';
 
             // Item Frames
