@@ -93,6 +93,7 @@ var levelOne = {
             { x: 600, y: 404, width: 32, height: 32, type: "freeze1", number: 1},
 
         ],
+        music: "./BGM1_the_morning_moon.mp3",
 
 };
 var levelTwo = {
@@ -155,6 +156,7 @@ var levelTwo = {
             { x: 180, y: 221, width: 32, height: 32, type: "freeze2", number: 2 },
             { x: 976, y: 297, width: 32, height: 32, type: "freeze1", number: 1 },
         ],
+    music:  "./BGM2_smooth_jazz_festival.mp3",
 
 };
 var levelThree = {
@@ -253,7 +255,7 @@ var levelThree = {
             { x: 530, y: 200, width: 32, height: 32, type: "meat", number: 3},
 
         ],
-
+        music: "./BGM3_afternoon_angels.mp3",
 };
 var levelFour = { // forest level
     wall:
@@ -319,6 +321,7 @@ var levelFour = { // forest level
             { x: 260, y: 1135, width: 32, height: 32, type: "freeze1", number: 1 },
             { x: 180, y: 835, width: 32, height: 32, type: "freeze2", number: 2 },
         ],
+        music: "./BGM4_MALIBU.mp3",
 
 };
 var levelFive = { // final level
@@ -347,6 +350,7 @@ var levelFive = { // final level
     entities: [],
     collectable: [],
     powerUp: [],
+    music: "./BMG5_theme_of_confrontation_steady_version.mp3",
 }
 var deaths = {
     death: [{ count: 0 }],

@@ -72,7 +72,9 @@ class Player {
 
     die() {
         this.game.alive = false;
-
+        console.log("die")
+        ASSET_MANAGER.pauseBackgroundMusic();
+        ASSET_MANAGER.playAsset("./you_died.mp3");
     };
 
     setColor() {
@@ -199,7 +201,9 @@ class Player {
                 //If any enemy is hit, the player dies
                 if (entity instanceof Entity) {
                     that.state = 2;
-                    that.die();
+                    if(that.game.alive){
+                        that.die();
+                    }
                 }
                 //If a collectable is hit by the player, the collectable is removed from the world and added to the players collectable count
                 that.itemCollision(entity, that);

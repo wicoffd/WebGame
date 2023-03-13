@@ -46,7 +46,26 @@ class SceneManager {
         this.playerOffsetX = x;
         this.playerOffsetY = y;
         this.level = eval(levelname);
-
+        if (this.level.music && !this.title) {
+            ASSET_MANAGER.pauseBackgroundMusic();
+            // switch(this.level.music){
+            //     case "./BGM1_the_morning_moon.mp3":
+            //         ASSET_MANAGER.adjustVolume(0.2);
+            //         break;
+            //     case "./BGM2_smooth_jazz_festival.mp3":
+            //         console.log("level 2")
+            //         ASSET_MANAGER.adjustVolume(0.3);
+            //         break;
+            //     case "./BMG5_theme_of_confrontation_steady_version.mp3":
+            //         ASSET_MANAGER.adjustVolume(0.3);
+            //         break;
+            //     default: 
+            //         //ASSET_MANAGER.adjustVolume(1);
+            //         break;
+            // }
+            console.log("play");
+            ASSET_MANAGER.playAsset(this.level.music);
+        }
         this.player = new Player(this.game, this.inventory, "1", "down", this.midpoint_x + this.playerOffsetX, this.midpoint_y + this.playerOffsetY);
         //console.log(this.level);
         if (this.level.wall) {
