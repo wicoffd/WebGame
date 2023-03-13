@@ -20,12 +20,13 @@ class SceneManager {
         this.storyTextFlag = false;
         this.controlTextFlag = false;
         this.asleep = false;
+        this.titleAnimator = new Animator(ASSET_MANAGER.getAsset("./text.png"), 0 , 0, 522, 160, 1, 1);
         // spawn player in middle
         // this.midpoint_x = this.game.ctx.canvas.width / 2;
         //this.midpoint_y = this.game.ctx.canvas.height / 2;
         //this.player = new Player(this.game,"1","down",this.midpoint_x, this.midpoint_y);
         //this.inventory = new InventoryManager(gameEngine);
-        console.log("scenemanager constructed")
+        //console.log("scenemanager constructed")
         this.midpoint_x = this.game.ctx.canvas.width / 2;// moved from load level
         this.midpoint_y = this.game.ctx.canvas.height / 2;// moved from load level
         this.loadLevel(levelOne, 0, 0);
@@ -47,7 +48,7 @@ class SceneManager {
         this.level = eval(levelname);
 
         this.player = new Player(this.game, this.inventory, "1", "down", this.midpoint_x + this.playerOffsetX, this.midpoint_y + this.playerOffsetY);
-        console.log(this.level);
+        //console.log(this.level);
         if (this.level.wall) {
             for (var i = 0; i < this.level.wall.length; i++) {
                 let wall = this.level.wall[i];
@@ -149,7 +150,7 @@ class SceneManager {
                 await this.sleep(500);
                 this.asleep = false;
             }
-            console.log(this.asleep);
+            //console.log(this.asleep);
             if (this.game.enter && this.controlTextFlag && !this.asleep) {
                 this.startMenu = false;
                 this.controlTextFlag = false;
@@ -182,45 +183,52 @@ class SceneManager {
 
         }
         if (this.startTextFlag) {
+            this.titleAnimator.drawTitle(this.game.clockTick, this.game.ctx,
+                /*this.xPos - */ this.midpoint_x - 93,
+                /*this.yPos - */ this.midpoint_y - 25,
+                .45)
             this.game.ctx.font = "24px Trebuchet MS"
             this.game.ctx.fillStyle = "white";
-            this.game.ctx.fillText("Pandemic Pandemonium", (this.midpoint_x - 105), (this.midpoint_y));
+            //this.game.ctx.fillText("Pandemic Pandemonium", (this.midpoint_x - 105), (this.midpoint_y));
 
             this.game.ctx.font = "14px Trebuchet MS"
             this.game.ctx.fillStyle = "white";
-            this.game.ctx.fillText("Press Enter To Continue", (this.midpoint_x - 50), (this.midpoint_y + 140));
+            this.game.ctx.fillText("Press Enter To Continue", (this.midpoint_x - 50), (this.midpoint_y + 100));
 
         } else if (this.storyTextFlag) {
+            
             this.game.ctx.font = "8px Trebuchet MS"
             this.game.ctx.fillStyle = "white";
-            this.game.ctx.fillText("A peaceful town has descended into chaos. The bond between animals", (this.midpoint_x - 100), (this.midpoint_y - 50));
-            this.game.ctx.fillText("and humans has been shattered. An evil mastermind has turned friendly", (this.midpoint_x - 100), (this.midpoint_y - 35));
-            this.game.ctx.fillText("beasts into something more sinister. Your mission is to disrupt the", (this.midpoint_x - 100), (this.midpoint_y - 20));
-            this.game.ctx.fillText("mastermind's plan and save the town from the menacing creatures. ", (this.midpoint_x - 100), (this.midpoint_y - 5));
+            this.game.ctx.fillText("A peaceful town has descended into chaos. The bond between animals", (this.midpoint_x - 100), (this.midpoint_y - 30));
+            this.game.ctx.fillText("and humans has been shattered. An evil mastermind has turned friendly", (this.midpoint_x - 100), (this.midpoint_y - 15));
+            this.game.ctx.fillText("beasts into something more sinister. Your mission is to disrupt the", (this.midpoint_x - 100), (this.midpoint_y + 0));
+            this.game.ctx.fillText("mastermind's plan and save the town from the menacing creatures. ", (this.midpoint_x - 100), (this.midpoint_y + 15));
 
             this.game.ctx.font = "8px Trebuchet MS"
             this.game.ctx.fillStyle = "white";
-            this.game.ctx.fillText("On your journey you will collect items that will help disrupt the evil ", (this.midpoint_x - 100), (this.midpoint_y + 25));
-            this.game.ctx.fillText("mastermind’s plan. Keep an eye out for powerups that will stop beasts ", (this.midpoint_x - 100), (this.midpoint_y + 40));
-            this.game.ctx.fillText("in their tracks and allow you to gain an advantage.", (this.midpoint_x - 100), (this.midpoint_y + 55));
+            this.game.ctx.fillText("On your journey you will collect items that will help disrupt the evil ", (this.midpoint_x - 100), (this.midpoint_y + 45));
+            this.game.ctx.fillText("mastermind’s plan. Keep an eye out for powerups that will stop beasts ", (this.midpoint_x - 100), (this.midpoint_y + 60));
+            this.game.ctx.fillText("in their tracks and allow you to gain an advantage.", (this.midpoint_x - 100), (this.midpoint_y + 75));
 
             this.game.ctx.font = "14px Trebuchet MS"
             this.game.ctx.fillStyle = "white";
-            this.game.ctx.fillText("Press Enter To Continue", (this.midpoint_x - 50), (this.midpoint_y + 140));
+            this.game.ctx.fillText("Press Enter To Continue", (this.midpoint_x - 50), (this.midpoint_y + 125));
 
         } else if (this.controlTextFlag) {
             this.game.ctx.font = "18px Trebuchet MS"
             this.game.ctx.fillStyle = "white";
-            this.game.ctx.fillText("Controls", (this.midpoint_x), (this.midpoint_y - 50));
+            this.game.ctx.fillText("Controls", (this.midpoint_x-10), (this.midpoint_y - 50));
             this.game.ctx.font = "14px Trebuchet MS"
             this.game.ctx.fillStyle = "white";
             this.game.ctx.fillText("Movement: W,A,S,D", (this.midpoint_x - 100), (this.midpoint_y - 20));
             this.game.ctx.fillText("Use Item: R", (this.midpoint_x - 100), (this.midpoint_y - 0));
             this.game.ctx.fillText("Respawn After Death: Enter", (this.midpoint_x - 100), (this.midpoint_y + 20));
-
+            this.game.ctx.fillText("Press P for Easy Mode", (this.midpoint_x - 100), (this.midpoint_y + 40));
+            this.game.ctx.fillText("Find all the collectables on each map", (this.midpoint_x - 100), (this.midpoint_y + 70));
+            this.game.ctx.fillText("and then proceed to the next area.", (this.midpoint_x - 100), (this.midpoint_y + 90));
             this.game.ctx.font = "14px Trebuchet MS"
             this.game.ctx.fillStyle = "white";
-            this.game.ctx.fillText("Press Enter To Begin", (this.midpoint_x - 40), (this.midpoint_y + 140));
+            this.game.ctx.fillText("Press Enter To Begin", (this.midpoint_x - 40), (this.midpoint_y + 125));
         } else if (this.flag) {
             // this.game.ctx.fillStyle = rgb(11, 218, 81);
             //this.game.ctx.color = "red"
@@ -258,13 +266,13 @@ class SceneManager {
             this.game.ctx.strokeStyle = 'white';
 
             // Item Frames
-            this.game.ctx.strokeRect(this.midpoint_x - 75, this.midpoint_y + 125, 20, 20);
-            this.game.ctx.strokeStyle = 'white';
+            // this.game.ctx.strokeRect(this.midpoint_x - 75, this.midpoint_y + 125, 20, 20);
+            // this.game.ctx.strokeStyle = 'white';
             this.game.ctx.lineWidth = 1;
-            this.game.ctx.strokeRect(this.midpoint_x - 50, this.midpoint_y + 125, 20, 20);
-            this.game.ctx.strokeStyle = 'white';
-            this.game.ctx.lineWidth = .23;
-            this.game.ctx.strokeRect(this.midpoint_x - 25, this.midpoint_y + 125, 20, 20);
+            this.game.ctx.strokeRect(this.midpoint_x - 130, this.midpoint_y + 125, 20, 20);
+            // this.game.ctx.strokeStyle = 'white';
+            // this.game.ctx.lineWidth = .23;
+            // this.game.ctx.strokeRect(this.midpoint_x - 25, this.midpoint_y + 125, 20, 20);
         }
 
     };

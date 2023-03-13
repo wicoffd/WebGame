@@ -33,14 +33,12 @@ class InventoryManager {
             //console.log("this.current.get =  "+ this.current.get(string));
             this.current.set(string, this.current.get(string) + 1);
             this.refresh = true;
-            console.log(this.refresh);
-            //console.log("setpowerup if");
+            
         }
         else {
             //console.log(string + " set string");
             this.current.set(string, 1);
             this.refresh = true;
-            console.log(this.refresh);
         }
 
         // console.log("set powerup method call " + this.game.lastMap.size);
@@ -56,12 +54,12 @@ class InventoryManager {
     async usePowerUp(string) {
         // TODO
         //console.log(string);
-        console.log(this.current.has(string));
+        //console.log(this.current.has(string));
         this.game.frozen = true;
         this.removePowerUp(string);
         switch (string) {
             case "freeze0":
-                this.timer = 2000; // 2 sec
+                this.timer = 3000; // 3 sec
                 break;
             case "freeze1":
                 this.timer = 4000; // 4 sec
@@ -70,6 +68,7 @@ class InventoryManager {
                 this.timer = 10000; // 10 sec
                 break;
             case "meat":
+                this.timer = 6000; // 6 sec
                 //this.game.target
                 break;
         }
@@ -91,7 +90,7 @@ class InventoryManager {
         // powerup is active map
         // lastmap is backedup for reset
         this.game.lastMap = new Map(this.current); // saves map for reset
-        console.log(this.game.lastMap.entries());
+        //console.log(this.game.lastMap.entries());
     }
     resetPowerUpMap() {// revert to saved powerup on death
         this.current = new Map(this.game.lastMap);
@@ -100,11 +99,11 @@ class InventoryManager {
     updateItems() {
         // console.log("update items")
         // console.log(this.game.invPos + " inv pos");
-        console.log("array size " + this.current.size);
+        //console.log("array size " + this.current.size);
         if (this.current.size >= 1) {
             this.keysItr = this.current.keys();
             this.res = this.keysItr.next().value;
-            console.log("item name " + this.res);
+            //console.log("item name " + this.res);
             switch (this.res) {
                 case "freeze0":
                     this.numberC = 0;
@@ -196,7 +195,7 @@ class InventoryManager {
                 //console.log("hello");
                 this.updateItems();
                 //               console.log(this.numberL);
-                console.log("c value " + this.numberC);
+                //console.log("c value " + this.numberC);
                 //               console.log(this.numberR);
                 //this.animatorL = new Animator(ASSET_MANAGER.getAsset("./Powerups.png"), 0 + this.numberL * 32, 0, 32, 32, 1, 1);
                 this.animatorC = new Animator(ASSET_MANAGER.getAsset("./Powerups.png"), 0 + this.numberC * 32, 0, 32, 32, 1, 1);
@@ -212,7 +211,7 @@ class InventoryManager {
             //              scale)
             //middle item frame
             this.animatorC.drawFrame(this.game.clockTick, ctx,
-                /*this.xPos - */this.x - 50,
+                /*this.xPos - */this.x - 129.5,
                 /*this.yPos - */this.y + 125,
                 scale)
             // right item frame

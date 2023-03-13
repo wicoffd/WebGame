@@ -24,6 +24,7 @@ class GameEngine {
         this.B = false;
         this.enter = false;
         this.credits = false;
+        this.easy = false;
         this.E = false;
         this.Q = false;
         this.use = false;
@@ -65,7 +66,7 @@ class GameEngine {
         }
         function mouseClickListener(e) {
             that.click = getXandY(e);
-            if (true) console.log(that.click);
+            //if (true) console.log(that.click);
         }
         function wheelListener(e) {
             e.preventDefault(); // Prevent Scrolling
@@ -139,6 +140,9 @@ class GameEngine {
                 case "Numpad1":
                     that.use = true;
                     break;
+                case "KeyP":
+                    that.easy = true;
+                    break;
 
             }
         }
@@ -185,6 +189,9 @@ class GameEngine {
                 case "KeyR":
                 case "Numpad1":
                     that.use = false;
+                    break;
+                case "KeyP":
+                    
                     break;
             }
         }
