@@ -1,4 +1,5 @@
 var levelOne = {
+    music: "./BGM1_the_morning_moon.mp3",
     wall: 
     [
         //Living room wall entities
@@ -96,7 +97,13 @@ var levelOne = {
     ],
 
 };
+
+var levelTwo = {
+    music: "./BGM2_smooth_jazz_festival.mp3",
+}
+
 var levelThree = {
+    music: "./BGM3_afternoon_angels.mp3",
     wall:[
                 //Main borders
                 { x: 0, y: 467, width: 670, height: 160}, //Southern tree farm wall
@@ -163,6 +170,8 @@ var levelThree = {
     
 };
 var levelFour = { // forest level
+    music: "./BGM4_MALIBU.mp3",
+
     wall:[],
     door:[
         { x: 400, y: 400, width: 1000, height: 1100, direction: "south", destination: "levelFive"}, //at the observatory door // change to levelFive
@@ -179,6 +188,7 @@ var levelFour = { // forest level
     
 };
 var levelFive = { // final level
+    music: "./BMG5_theme_of_confrontation_steady_version.mp3",
     wall:[],
     door:[
         { x: 400, y: 400, width: 10, height: 31, direction: "south", destination: "credits"}, //at computer station // change to credits

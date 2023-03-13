@@ -282,9 +282,11 @@ class Entity {
        // console.log(dist);
         if(this.inRange==false){
             if(dist<this.radius){
-                this.inRange=true;}
+                this.inRange=true;
+            }
         }
         if(this.inRange == true){
+            
             this.velocity = { right: (this.playerPos.xPos - this.xPos) / dist * this.maxSpeed,
                             left: (this.playerPos.xPos - this.xPos) / dist * this.maxSpeed, 
                             up: (this.playerPos.yPos - this.yPos) / dist * this.maxSpeed,

@@ -23,6 +23,11 @@ ASSET_MANAGER.queueDownload("./Collectables.png")
 ASSET_MANAGER.queueDownload("./Powerups.png")
 
 // audio
+ASSET_MANAGER.queueDownload("./BGM1_the_morning_moon.mp3")
+ASSET_MANAGER.queueDownload("./BGM2_smooth_jazz_festival.mp3")
+ASSET_MANAGER.queueDownload("./BGM3_afternoon_angels.mp3")
+ASSET_MANAGER.queueDownload("./BGM4_MALIBU.mp3")
+ASSET_MANAGER.queueDownload("./BMG5_theme_of_confrontation_steady_version.mp3")
 ASSET_MANAGER.queueDownload("./you_died.mp3")
 
 ASSET_MANAGER.downloadAll(() => {
@@ -30,6 +35,12 @@ ASSET_MANAGER.downloadAll(() => {
 	const ctx = canvas.getContext("2d");
 	gameEngine.init(ctx);
     
+	ASSET_MANAGER.autoRepeat("./BGM1_the_morning_moon.mp3");
+	ASSET_MANAGER.autoRepeat("./BGM2_smooth_jazz_festival.mp3")
+	ASSET_MANAGER.autoRepeat("./BGM3_afternoon_angels.mp3")
+	ASSET_MANAGER.autoRepeat("./BGM4_MALIBU.mp3")
+	ASSET_MANAGER.autoRepeat("./BMG5_theme_of_confrontation_steady_version.mp3")
+
 	new SceneManager(gameEngine);
 	gameEngine.start();
 });

@@ -72,6 +72,7 @@ class Player {
 
     die() {
         this.game.alive = false;
+        ASSET_MANAGER.pauseBackgroundMusic();
         ASSET_MANAGER.playAsset("./you_died.mp3");
     };
 

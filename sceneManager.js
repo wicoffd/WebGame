@@ -81,6 +81,12 @@ class SceneManager {
                 this.game.addEntity(new PowerUp(gameEngine, powerUp.x, powerUp.y, powerUp.width, powerUp.height, powerUp.type, powerUp.number));
             }
         }
+
+        if (this.level.music && !this.title) {
+            ASSET_MANAGER.pauseBackgroundMusic();
+            ASSET_MANAGER.playAsset(this.level.music);
+        }
+
         this.game.addEntity(this.inventory);
         this.game.addEntity(this.player);
         this.game.addEntity(new Stuff(this.game, this.level));
