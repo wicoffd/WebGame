@@ -173,8 +173,8 @@ class Player {
                 else if (entity instanceof Door && that.collectableCounter >= that.collectableGoal && entity.destination == "levelThree") {
                     //console.log("level three");
                     if (Math.round(that.BB.right) == entity.BB.left || Math.round(that.BB.right) == (entity.BB.left - 1) || Math.round(that.BB.right) == (entity.BB.left + 1)) {
-                        console.log("unintentional save");
-                        console.log("level three");
+                        //console.log("unintentional save");
+                        //console.log("level three");
                         that.inventory.savePowerUpMap();
                         that.game.camera.loadLevel(levelThree, -310,-40)
 
@@ -183,7 +183,7 @@ class Player {
                 else if (entity instanceof Door && that.collectableCounter >= that.collectableGoal && entity.destination == "levelFour") {
                     if (Math.round(that.BB.right) == entity.BB.left || Math.round(that.BB.right) == (entity.BB.left - 1) || Math.round(that.BB.right) == (entity.BB.left + 1)) {
                         that.inventory.savePowerUpMap();
-                        console.log("unintentional save");
+                       // console.log("unintentional save");
                         that.game.camera.loadLevel(levelFour, -340, 670)
 
                     }
@@ -191,7 +191,7 @@ class Player {
                 else if (entity instanceof Door && that.collectableCounter >= that.collectableGoal && entity.destination == "levelFive") {
                     if (Math.round(that.BB.top) == entity.BB.bottom || Math.round(that.BB.top) == (entity.BB.bottom - 1) || Math.round(that.BB.top) == (entity.BB.bottom + 1)) {
                         that.inventory.savePowerUpMap();
-                        console.log("unintentional save");
+                        //console.log("unintentional save");
                         that.game.camera.loadLevel(levelFive, -350,-100)
 
                     }
@@ -267,14 +267,14 @@ class Player {
         }
         if (entity instanceof PowerUp) {
             // if entity.has(type){}
-            console.log(entity.type + " entity.type");
+           // console.log(entity.type + " entity.type");
             if(this.inventory.hasPowerUp(entity.type)){
             this.inventory.setPowerUp(entity.type);
             
-            console.log("set powerup item colision if")
+           // console.log("set powerup item colision if")
             //this.inventory.powerUp.set(entity.type, this.inventory.powerUp.get(entity.type)+1);
             }else{
-                console.log("set powerup item colision else")
+                //console.log("set powerup item colision else")
                 this.inventory.setPowerUp(entity.type);
                 //this.inventory.powerUp.set(entity.type, 1);
             }

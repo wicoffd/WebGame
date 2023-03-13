@@ -20,6 +20,7 @@ class Entity {
         this.frameNumber = 3;
         this.inRange = false;
         this.radius = detectRange;
+        this.speedScale = 1;
         this.state = 0;
         this.frozen = this.game.frozen;
         this.animationSpeed = .2;
@@ -73,13 +74,14 @@ class Entity {
         switch(this.type){
             case "owl":
                 this.scale = .6;
+                this.maxSpeed = this.maxSpeed*this.speedScale;
                 this.asset = "./Owl.png";
             break;
 
             case "dog":
                 this.asset = "./doggy.png";
                 this.scale = .6;
-                this.maxSpeed = (Math.random() * (75 - 65) + 65);
+                this.maxSpeed = (Math.random() * (75 - 65) + 65)* this.speedScale;
                 this.xBB = 15;
                 this.yBB = 20;
                 
@@ -89,16 +91,18 @@ class Entity {
                 this.asset = "./Mouse.png";
                 this.scale = .6;
                 this.animationSpeed = .06;
-                this.maxSpeed = (Math.random() * (70 - 60) + 60);
+                this.maxSpeed = (Math.random() * (70 - 60) + 60)* this.speedScale;
                 this.xBB = 20;
                 this.yBB = 33;
             break;
 
             case "bear":
+                this.maxSpeed = this.maxSpeed*this.speedScale;
                 this.asset = "./Bear.png";
             break;
 
             case "bunny":
+                this.maxSpeed = this.maxSpeed*this.speedScale;
                 this.asset = "./Bunny.png";
                 this.scale = .5;
             break;
@@ -106,7 +110,7 @@ class Entity {
             case "cat":
                 this.asset = "./Cat.png";
                 this.scale = .5;
-                this.maxSpeed = (Math.random() * (75 - 65) + 65);
+                this.maxSpeed = (Math.random() * (75 - 65) + 65)* this.speedScale;
                 this.xBB = 15;
                 this.yBB = 20;
             break;
@@ -114,36 +118,41 @@ class Entity {
             case "chicken":
                 this.asset = "./Chicken.png";
                 this.scale = .4;
+                this.maxSpeed = this.maxSpeed*this.speedScale;
             break;
 
             case "goose":
                 this.asset = "./Geese.png";
                 this.scale = .5;
+                this.maxSpeed = this.maxSpeed*this.speedScale;
             break;
 
             case "pig":
                 this.asset = "./Pig.png";
                 this.scale = .7;
-                this.maxSpeed = (Math.random() * (65 - 55) + 55);
+                this.maxSpeed = (Math.random() * (65 - 55) + 55)* this.speedScale;
             break;
 
             case "raccoon":
                 this.asset = "./Raccoon.png";
                 this.scale = .5;
+                this.maxSpeed = this.maxSpeed*this.speedScale;
             break;
 
             case "sheep":
                 this.asset = "./Sheep.png";
                 this.scale = .80;
+                this.maxSpeed = this.maxSpeed*this.speedScale;
             break;
 
             case "wolf":
                 this.asset = "./Wolf.png";
                 this.scale = .6;
+                this.maxSpeed = this.maxSpeed*this.speedScale;
             break;
 
             default:
-                console.log("type is defaulting to dog");
+               
             break;
         }
     }
@@ -196,10 +205,19 @@ class Entity {
         }
 
     }
+    changeSpeed(){
+        this.speedScale = .5;
+    }
     update(){
         this.updateBB();
-
-		
+        
+		if(this.speedScale!=.5){
+            
+            if(this.game.easy){
+                this.speedScale = .5;
+                this.setType();
+            }
+        }
         var dist = this.distance(this.target, this);
         /*this.velocity = { right: (this.target.xPos - this.xPos) / dist * this.maxSpeed,
                             left: (this.target.xPos - this.xPos) / dist * this.maxSpeed, 
@@ -279,6 +297,7 @@ class Entity {
     };
 	
     transform() {
+        
         this.playerPos  = {xPos: this.target.xPos +14, yPos: this.target.yPos +28 }
         //var dist = this.distance(this.playerPos, this);
         var dist = this.distance(this.playerPos, this);

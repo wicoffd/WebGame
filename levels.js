@@ -73,7 +73,7 @@ var levelOne = {
             //{ color:"4", type: "goose", direction: "left", xPos: 190, yPos: 350+48+48+48+48+48, range: 100},
             //{ color:"4", type: "raccoon", direction: "left", xPos: 200, yPos: 350+48+48+48+48+48+48, range: 100},  
 
-            //{ color:"7", type: "dog", direction: "down", xPos: 740, yPos: 550, range: 100},
+            { color:"7", type: "dog", direction: "down", xPos: 740, yPos: 550, range: 100},
             { color: "2", type: "mouse", direction: "down", xPos: 860, yPos: 310, range: 120 }, // near trash can
             { color: "7", type: "mouse", direction: "left", xPos: 908, yPos: 275, range: 100 }, // white near counter 
             { color: "4", type: "mouse", direction: "right", xPos: 1145, yPos: 285, range: 80 }, // near fridge
@@ -154,8 +154,8 @@ var levelTwo = {
         ],
     powerUp:
         [
-            { x: 180, y: 221, width: 32, height: 32, type: "freeze", number: 2 },
-            { x: 976, y: 297, width: 32, height: 32, type: "freeze", number: 1 },
+            { x: 180, y: 221, width: 32, height: 32, type: "freeze2", number: 2 },
+            { x: 976, y: 297, width: 32, height: 32, type: "freeze1", number: 1 },
         ],
 
 };
@@ -223,24 +223,24 @@ var levelThree = {
     entities:
         [
             //Chickens
-            { color: "1", type: "chicken", direction: "down", xPos: 1010, yPos: 198, range: 00 },
-            { color: "3", type: "chicken", direction: "left", xPos: 1076, yPos: 260, range: 00 },
-            { color: "1", type: "chicken", direction: "down", xPos: 612, yPos: 150, range: 00 },
-            { color: "8", type: "chicken", direction: "down", xPos: 755, yPos: 325, range: 00 },
+            { color: "1", type: "chicken", direction: "down", xPos: 1010, yPos: 198, range: 80 },
+            { color: "3", type: "chicken", direction: "left", xPos: 1076, yPos: 260, range: 80 },
+            { color: "1", type: "chicken", direction: "down", xPos: 612, yPos: 150, range: 80 },
+            { color: "8", type: "chicken", direction: "down", xPos: 755, yPos: 325, range: 80 },
             { color: "7", type: "chicken", direction: "right", xPos: 280, yPos: 445, range: 70 },
             //{ color: "1", type: "chicken", direction: "right", xPos: 280, yPos: 375, range: 100 },
             //{ color: "3", type: "chicken", direction: "right", xPos: 265, yPos: 425, range: 100 },
-            { color: "2", type: "chicken", direction: "down", xPos: 1025, yPos: 442, range: 0 },
+            { color: "2", type: "chicken", direction: "down", xPos: 1025, yPos: 442, range: 80 },
 
             //Sheep
-            { color: "1", type: "sheep", direction: "down", xPos: 900, yPos: 550, range: 00 },
-            { color: "1", type: "sheep", direction: "right", xPos: 1050, yPos: 530, range: 0 },
-            { color: "3", type: "sheep", direction: "left", xPos: 850, yPos: 600, range: 0 },
+            { color: "1", type: "sheep", direction: "down", xPos: 900, yPos: 550, range: 80 },
+            { color: "1", type: "sheep", direction: "right", xPos: 1050, yPos: 530, range: 80 },
+            { color: "3", type: "sheep", direction: "left", xPos: 850, yPos: 600, range: 80 },
 
             //Pigs
-            { color: "5", type: "pig", direction: "left", xPos: 340, yPos: 210, range: 0 }, //far left
-            { color: "8", type: "pig", direction: "down", xPos: 380, yPos: 150, range: 0 }, //middle 380x, 150y
-            { color: "7", type: "pig", direction: "right", xPos: 450, yPos: 210, range: 0 }, //far right 
+            { color: "5", type: "pig", direction: "left", xPos: 340, yPos: 210, range: 80 }, //far left
+            { color: "8", type: "pig", direction: "down", xPos: 380, yPos: 150, range: 80 }, //middle 380x, 150y
+            { color: "7", type: "pig", direction: "right", xPos: 450, yPos: 210, range: 80 }, //far right 
         ],
     collectable:
         [
@@ -250,8 +250,8 @@ var levelThree = {
         ],
     powerUp:
         [
-            { x: 480, y: 330, width: 32, height: 32, type: "freeze", number: 0 },
-            { x: 1076, y: 168, width: 32, height: 32, type: "freeze", number: 1 },
+            { x: 480, y: 330, width: 32, height: 32, type: "freeze0", number: 0 },
+            { x: 1076, y: 168, width: 32, height: 32, type: "freeze1", number: 1 },
 
         ],
 
@@ -303,16 +303,22 @@ var levelFour = { // forest level
         ],
     entities:
         [
-            //{ color:"4", type: "cat", direction: "left", xPos: 300, yPos: 300, range: 150},
-
+            
+            { color:"2", type: "owl", direction: "down", xPos: 280, yPos: 1035, range: 90},
+            { color:"4", type: "bear", direction: "right", xPos: 180, yPos: 825, range: 250},
+            { color:"4", type: "wolf", direction: "up", xPos: 378, yPos: 605, range: 200},
+            { color:"7", type: "owl", direction: "right", xPos: 225, yPos: 705, range: 200},
         ],
     collectable:
         [
-
+            { x: 364, y: 1074, width: 32, height: 32, number: 1 },
+            { x: 394, y: 704, width: 32, height: 32, number: 4 },
+            { x: 306, y: 454, width: 32, height: 32, number: 5 },
         ],
     powerUp:
         [
-
+            { x: 260, y: 1135, width: 32, height: 32, type: "freeze1", number: 1 },
+            { x: 180, y: 835, width: 32, height: 32, type: "freeze2", number: 2 },
         ],
 
 };

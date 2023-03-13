@@ -39,7 +39,17 @@ class Animator {
             x,y, //destination x, destination y
             this.width*scale,this.height*scale); // destination height, destination width
     };
-    
+    drawTitle(tick, ctx, x, y, scale) {
+        this.elapsedTime += tick;
+        if(this.elapsedTime > this.totalTime) this.elapsedTime -= this.totalTime;
+        const frame = this.currentFrame();
+        ctx.imageSmoothingEnabled = true; // sharpens the image
+        ctx.drawImage(this.spritesheet,
+            this.xStart + this.width*frame,this.yStart, // start x, start y
+            this.width,this.height, // source width, source height
+            x,y, //destination x, destination y
+            this.width*scale,this.height*scale); // destination height, destination width
+    };
     currentFrame(){
         return Math.floor(this.elapsedTime/this.frameDuration);   
     };

@@ -30,7 +30,7 @@ class Stuff {
             break;
             default:
                 //console.log(this.map);
-                console.log("default error");
+                //console.log("default error");
             break;
         }
         
